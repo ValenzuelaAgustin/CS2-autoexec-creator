@@ -41,20 +41,20 @@ const char* Game_Settings[] =
 	"eom_local_player_defeat_anim_enabled",
 	"cl_scoreboard_survivors_always_on",
 	"cl_obs_interp_enable",
-	Smooth_Spectator_Camera_Speed,
+	"cl_obs_interp_pos_rate",
 
 	// Item
-	Delay_Sniper_Rifle_UnScope_after_Shot,
-	Auto_ReZoom_Sniper_Rifle_after_Shot,
-	Detach_Silencer_on_M4A1S_and_USPS,
-	Viewmodel_Position,
-	Preferred_Viewmodel_Left_Right_Handedness,
-	First_Person_Tracers,
-	Always_Show_Inventory,
-	Open_Buy_Menu_With_Use_Key,
-	Buy_Menu_Number_Keys,
-	Buy_Menu_Donation_Key,
-	Last_Weapon_on_Radial_Weapon_Tap,
+	"cl_sniper_delay_unscope",
+	"cl_sniper_auto_rezoom",
+	"cl_silencer_mode",
+	"viewmodel_presetpos",
+	"", // Preferred_Viewmodel_Left_Right_Handedness
+	"r_drawtracers_firstperson",
+	"cl_showloadout",
+	"cl_use_opens_buy_menu",
+	"cl_buywheel_nonumberpurchasing",
+	"cl_buywheel_donate_key",
+	"", // Last_Weapon_on_Radial_Weapon_Tap
 
 	// Radar / Tablet
 	Radar_Centers_The_Player,
