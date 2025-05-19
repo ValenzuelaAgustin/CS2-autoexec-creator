@@ -57,15 +57,15 @@ const char* Game_Settings[] =
 	"", // Last_Weapon_on_Radial_Weapon_Tap
 
 	// Radar / Tablet
-	Radar_Centers_The_Player,
-	Radar_Is_Rotating,
-	Radar_Hud_Map_Blends_With_Background,
-	Radar_Hud_Background_Opacity,
-	Radar_Hud_Size,
-	Radar_Map_Zoom,
-	Radar_Map_Alternate_Zoom,
-	Toggle_Shape_With_Scoreboard,
-	Radar_Is_Zooming_Dynamically,
+	"cl_radar_always_centered",
+	"cl_radar_rotate",
+	"cl_hud_radar_map_additive",
+	"cl_hud_radar_background_alpha",
+	"cl_hud_radar_scale",
+	"cl_radar_scale",
+	"cl_radar_scale_alternate",
+	"cl_radar_square_with_scoreboard",
+	"cl_radar_scale_dynamic",
 
 	// Crosshair
 	Crosshair_Style,
