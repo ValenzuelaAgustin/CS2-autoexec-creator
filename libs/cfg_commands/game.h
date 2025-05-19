@@ -22,25 +22,25 @@ const char* Game_Settings[] =
 	// Team
 	"cl_teamid_overhead_mode",
 	"cl_teammate_colors_show",
-	Use_Player_Colors_on_Team_ID,
-	Friends_Lobby_Default_Permissions,
-	Looking_to_Play_when_Counter_Strike_Starts,
+	"cl_teamid_overhead_colors_show",
+	"lobby_default_privacy_bits2",
+	"ui_setting_advertiseforhire_auto",
 
 	// Communication
-	Player_Pings,
-	Mute_Enemy_Team,
-	Mute_All_But_Friends,
-	Text_Filtering,
-	Allow_Animated_Avatars,
-	Hide_Avatar_Images_and_Customized_Items,
-	Clean_Player_Names,
+	"cl_player_ping_mute",
+	"cl_mute_enemy_team",
+	"cl_mute_all_but_friends_and_party",
+	"", // Text_Filtering ( It is not configured inside CS2 )
+	"cl_allow_animated_avatars",
+	"cl_hide_avatar_images",
+	"cl_sanitize_player_names",
 
 	// Spectator / Scoreboard
-	Spectator_Map_Vote_Number_Selection_Method,
-	Scoreboard_Mouse_Enable_End_of_Match_Scoreboard_Toggle,
-	End_of_Match_Local_Player_Defeat_Animation,
-	Survivors_Always_On,
-	Smooth_Spectator_Camera,
+	"spec_usenumberkeys_nobinds",
+	"cl_scoreboard_mouse_enable_binding",
+	"eom_local_player_defeat_anim_enabled",
+	"cl_scoreboard_survivors_always_on",
+	"cl_obs_interp_enable",
 	Smooth_Spectator_Camera_Speed,
 
 	// Item
