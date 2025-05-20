@@ -14,10 +14,10 @@ const char* Audio_Settings[] =
 
 	// Voice
 	"snd_voipvolume",
-	"voice_modenable",	// Voice_Microphone_Mode ( TODO: Check if it really is )
+	"voice_modenable",					// Voice_Microphone_Mode ( TODO: Check )
 	"voice_device_override",
-	"",	// Hear_My_Own_Voice
-	"",	// Streamlined_Push_To_Talk
+	"",							// Hear_My_Own_Voice
+	"",							// Streamlined_Push_To_Talk
 	"voice_threshold",
 
 	// Music
@@ -32,10 +32,10 @@ const char* Audio_Settings[] =
 	"snd_mute_mvp_music_live_players",
 
 	// Game Mode EQ
-	"",	// Competitive_EQ
-	"",	// Casual_EQ
-	"",	// Deathmatch_EQ
-	""	// Arms_Race_EQ
+	"",							// Competitive_EQ
+	"",							// Casual_EQ
+	"",							// Deathmatch_EQ
+	""							// Arms_Race_EQ
 };
 
 enum

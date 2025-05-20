@@ -4,11 +4,11 @@
 const char* Game_Settings[] =
 {
 	// Game
-	"con_enable",	// Launched_With_Developer_Console ( TODO: Check )
+	"con_enable",						// Launched_With_Developer_Console ( TODO: Check )
 	"mm_dedicated_search_maxping",
 	"rate",
 	"cl_net_buffer_ticks",
-	"install_dlc_workshoptools_cvar", // Install_Counter_Strike_Workshop_Tools ( TODO: Check )
+	"install_dlc_workshoptools_cvar",			// Install_Counter_Strike_Workshop_Tools ( TODO: Check )
 
 	// Hud
 	"hud_scaling",
@@ -30,7 +30,7 @@ const char* Game_Settings[] =
 	"cl_player_ping_mute",
 	"cl_mute_enemy_team",
 	"cl_mute_all_but_friends_and_party",
-	"", // Text_Filtering ( It is not configured inside CS2 )
+	"",							// Text_Filtering ( It is not configured inside CS2 )
 	"cl_allow_animated_avatars",
 	"cl_hide_avatar_images",
 	"cl_sanitize_player_names",
@@ -48,13 +48,13 @@ const char* Game_Settings[] =
 	"cl_sniper_auto_rezoom",
 	"cl_silencer_mode",
 	"viewmodel_presetpos",
-	"", // Preferred_Viewmodel_Left_Right_Handedness
+	"",							// Preferred_Viewmodel_Left_Right_Handedness
 	"r_drawtracers_firstperson",
 	"cl_showloadout",
 	"cl_use_opens_buy_menu",
 	"cl_buywheel_nonumberpurchasing",
 	"cl_buywheel_donate_key",
-	"", // Last_Weapon_on_Radial_Weapon_Tap
+	"",							// Last_Weapon_on_Radial_Weapon_Tap
 
 	// Radar / Tablet
 	"cl_radar_always_centered",
@@ -84,12 +84,12 @@ const char* Game_Settings[] =
 	"cl_crosshairalpha",
 	"cl_crosshair_t",
 	"cl_crosshairgap_useweaponvalue",
-	"", // Use_crosshair_color_for_scope_dot
+	"",							// Use_crosshair_color_for_scope_dot
 	"cl_show_observer_crosshair",
-	"", // Show_my_crosshair_when_spectating_bots
+	"",							// Show_my_crosshair_when_spectating_bots
 
 	// Grenade Line-up Reticle
-	Keep_Regular_Crosshair,
+	"cl_grenadecrosshair_keepusercrosshair",
 	Flashbangs,
 	HE_grenades,
 	Molotov_cocktails_Incendiary_grenades,
