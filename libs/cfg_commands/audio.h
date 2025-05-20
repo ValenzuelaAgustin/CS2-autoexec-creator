@@ -1,6 +1,8 @@
 #ifndef AUDIO_H
 #define AUDIO_H
 
+//	https://steamcommunity.com/sharedfiles/filedetails/?id=3046217806
+
 const char* Audio_Settings[] =
 {
 	// Audio
@@ -14,10 +16,10 @@ const char* Audio_Settings[] =
 
 	// Voice
 	"snd_voipvolume",
-	"voice_modenable",					// Voice_Microphone_Mode ( TODO: Check )
+	"voice_modenable",
 	"voice_device_override",
-	"",							// Hear_My_Own_Voice
-	"",							// Streamlined_Push_To_Talk
+	"voice_loopback_no_networking",				// Hear_My_Own_Voice ( TODO: Check )
+	"voice_always_sample_mic",				// Streamlined_Push_To_Talk ( TODO: Check )
 	"voice_threshold",
 
 	// Music
@@ -32,10 +34,10 @@ const char* Audio_Settings[] =
 	"snd_mute_mvp_music_live_players",
 
 	// Game Mode EQ
-	"",							// Competitive_EQ
-	"",							// Casual_EQ
-	"",							// Deathmatch_EQ
-	""							// Arms_Race_EQ
+	"snd_eq_competitive",					// Competitive_EQ ( TODO: Check )
+	"snd_eq_casual",					// Casual_EQ ( TODO: Check )
+	"snd_eq_deathmatch",					// Deathmatch_EQ ( TODO: Check )
+	"snd_eq_arms_race"					// Arms_Race_EQ ( TODO: Check )
 };
 
 enum

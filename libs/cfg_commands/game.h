@@ -48,7 +48,7 @@ const char* Game_Settings[] =
 	"cl_sniper_auto_rezoom",
 	"cl_silencer_mode",
 	"viewmodel_presetpos",
-	"",							// Preferred_Viewmodel_Left_Right_Handedness
+	"cl_prefer_lefthanded",					// Preferred_Viewmodel_Left_Right_Handedness ( TODO: Check )
 	"r_drawtracers_firstperson",
 	"cl_showloadout",
 	"cl_use_opens_buy_menu",
@@ -86,7 +86,7 @@ const char* Game_Settings[] =
 	"cl_crosshairgap_useweaponvalue",
 	"",							// Use_crosshair_color_for_scope_dot
 	"cl_show_observer_crosshair",
-	"",							// Show_my_crosshair_when_spectating_bots
+	"cl_observed_bot_crosshair",				// Show_my_crosshair_when_spectating_bots ( TODO: Check )
 
 	// Grenade Line-up Reticle
 	"cl_grenadecrosshair_keepusercrosshair",
