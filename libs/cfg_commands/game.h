@@ -102,18 +102,18 @@ const char* Game_Settings[] =
 	"cl_grenadecrosshairdelay_decoy",
 
 	// Damage Prediction
-	Predict_Body_Shot_Effects,
-	Predict_Head_Shot_Effects,
-	Predict_Kill_Ragdolls,
+	"cl_predict_body_shot_fx",
+	"cl_predict_head_shot_fx",
+	"cl_predict_kill_ragdolls",
 
 	// Telemetry
-	Show_frame_time_and_FPS,
-	Frame_time_warning_threshold,
-	Show_ping,
-	Show_network_problems,
-	Network_tick_miss_rate_warning_threshold,
-	Show_network_jitter_misdelivery_graph,
-	Use_the_detailed_network_quality_display
+	"cl_hud_telemetry_frametime_show",
+	"cl_hud_telemetry_frametime_poor",
+	"cl_hud_telemetry_ping_show",
+	"cl_hud_telemetry_net_misdelivery_show",
+	"cl_hud_telemetry_net_misdelivery_poor",
+	"cl_hud_telemetry_net_quality_graph_show",
+	"cl_hud_telemetry_net_detailed"
 };
 
 enum
