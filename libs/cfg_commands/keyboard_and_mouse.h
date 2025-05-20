@@ -75,8 +75,35 @@ enum
 	// Chat_Wheel_Keys
 	Chat_Wheel_1,
 	Chat_Wheel_2,
-	Chat_Wheel_3
-	// Faltan opciones de Chat Wheel phrases
+	Chat_Wheel_3,
+
+	// Chat Wheel phrases
+	Chat_Wheel_1_Text_1,
+	Chat_Wheel_1_Text_2,
+	Chat_Wheel_1_Text_3,
+	Chat_Wheel_1_Text_4,
+	Chat_Wheel_1_Text_5,
+	Chat_Wheel_1_Text_6,
+	Chat_Wheel_1_Text_7,
+	Chat_Wheel_1_Text_8,
+
+	Chat_Wheel_2_Text_1,
+	Chat_Wheel_2_Text_2,
+	Chat_Wheel_2_Text_3,
+	Chat_Wheel_2_Text_4,
+	Chat_Wheel_2_Text_5,
+	Chat_Wheel_2_Text_6,
+	Chat_Wheel_2_Text_7,
+	Chat_Wheel_2_Text_8,
+
+	Chat_Wheel_3_Text_1,
+	Chat_Wheel_3_Text_2,
+	Chat_Wheel_3_Text_3,
+	Chat_Wheel_3_Text_4,
+	Chat_Wheel_3_Text_5,
+	Chat_Wheel_3_Text_6,
+	Chat_Wheel_3_Text_7,
+	Chat_Wheel_3_Text_8,
 };
 
 #endif
