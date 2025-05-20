@@ -8,7 +8,7 @@ const char* Game_Settings[] =
 	"mm_dedicated_search_maxping",
 	"rate",
 	"cl_net_buffer_ticks",
-	"install_dlc_workshoptools_cvar",			// Install_Counter_Strike_Workshop_Tools ( TODO: Check )
+	"install_dlc_workshoptools_cvar",
 
 	// Hud
 	"hud_scaling",
@@ -48,7 +48,7 @@ const char* Game_Settings[] =
 	"cl_sniper_auto_rezoom",
 	"cl_silencer_mode",
 	"viewmodel_presetpos",
-	"cl_prefer_lefthanded",					// Preferred_Viewmodel_Left_Right_Handedness ( TODO: Check )
+	"cl_prefer_lefthanded",
 	"r_drawtracers_firstperson",
 	"cl_showloadout",
 	"cl_use_opens_buy_menu",
@@ -86,7 +86,7 @@ const char* Game_Settings[] =
 	"cl_crosshairgap_useweaponvalue",
 	"",							// Use_crosshair_color_for_scope_dot
 	"cl_show_observer_crosshair",
-	"cl_observed_bot_crosshair",				// Show_my_crosshair_when_spectating_bots ( TODO: Check )
+	"cl_observed_bot_crosshair",
 
 	// Grenade Line-up Reticle
 	"cl_grenadecrosshair_keepusercrosshair",
