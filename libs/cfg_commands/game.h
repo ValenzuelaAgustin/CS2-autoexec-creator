@@ -90,11 +90,16 @@ const char* Game_Settings[] =
 
 	// Grenade Line-up Reticle
 	"cl_grenadecrosshair_keepusercrosshair",
-	Flashbangs,
-	HE_grenades,
-	Molotov_cocktails_Incendiary_grenades,
-	Smoke_grenades,
-	Decoy_grenades,
+	"cl_grenadecrosshair_flash",
+	"cl_grenadecrosshairdelay_flash",
+	"cl_grenadecrosshair_explosive",
+	"cl_grenadecrosshairdelay_explosive",
+	"cl_grenadecrosshair_fire",
+	"cl_grenadecrosshairdelay_fire",
+	"cl_grenadecrosshair_smoke",
+	"cl_grenadecrosshairdelay_smoke",
+	"cl_grenadecrosshair_decoy",
+	"cl_grenadecrosshairdelay_decoy",
 
 	// Damage Prediction
 	Predict_Body_Shot_Effects,
@@ -200,11 +205,16 @@ enum
 
 	// Grenade Line-up Reticle
 	Keep_Regular_Crosshair,
-	Flashbangs,
-	HE_grenades,
-	Molotov_cocktails_Incendiary_grenades,
-	Smoke_grenades,
-	Decoy_grenades,
+	Flashbangs_Crosshair,
+	Flashbangs_Crosshair_Delay,
+	HE_grenades_Crosshair,
+	HE_grenades_Crosshair_Delay,
+	Molotov_cocktails_Incendiary_grenades_Crosshair,
+	Molotov_cocktails_Incendiary_grenades_Crosshair_Delay,
+	Smoke_grenades_Crosshair,
+	Smoke_grenades_Crosshair_Delay,
+	Decoy_grenades_Crosshair,
+	Decoy_grenades_Crosshair_Delay,
 
 	// Damage Prediction
 	Predict_Body_Shot_Effects,
