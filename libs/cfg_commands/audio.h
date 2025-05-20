@@ -18,8 +18,8 @@ const char* Audio_Settings[] =
 	"snd_voipvolume",
 	"voice_modenable",
 	"voice_device_override",
-	"voice_loopback_no_networking",				// Hear_My_Own_Voice ( TODO: Check )
-	"voice_always_sample_mic",				// Streamlined_Push_To_Talk ( TODO: Check )
+	"voice_loopback_no_networking",
+	"voice_always_sample_mic",
 	"voice_threshold",
 
 	// Music
@@ -34,10 +34,10 @@ const char* Audio_Settings[] =
 	"snd_mute_mvp_music_live_players",
 
 	// Game Mode EQ
-	"snd_eq_competitive",					// Competitive_EQ ( TODO: Check )
-	"snd_eq_casual",					// Casual_EQ ( TODO: Check )
-	"snd_eq_deathmatch",					// Deathmatch_EQ ( TODO: Check )
-	"snd_eq_arms_race"					// Arms_Race_EQ ( TODO: Check )
+	"",					// Competitive_EQ ( TODO: Check ) snd_eq_competitive
+	"",					// Casual_EQ ( TODO: Check ) snd_eq_casual
+	"",					// Deathmatch_EQ ( TODO: Check ) snd_eq_deathmatch
+	""					// Arms_Race_EQ ( TODO: Check ) snd_eq_arms_race
 };
 
 enum
