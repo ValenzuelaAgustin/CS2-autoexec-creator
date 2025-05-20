@@ -3,7 +3,7 @@
 
 //	https://steamcommunity.com/sharedfiles/filedetails/?id=3046217806
 
-extern const char* Audio_Settings[];
+extern const char* const Audio_Settings[];
 
 enum
 {

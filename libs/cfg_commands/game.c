@@ -1,6 +1,6 @@
 #include "game.h"
 
-const char* Game_Settings[] =
+const char* const Game_Settings[] =
 {
 	// Game
 	"con_enable",

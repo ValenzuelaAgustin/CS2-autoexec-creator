@@ -1,6 +1,6 @@
 #include "audio.h"
 
-const char* Audio_Settings[] =
+const char* const Audio_Settings[] =
 {
 	// Audio
 	"volume",

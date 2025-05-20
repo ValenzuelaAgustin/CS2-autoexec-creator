@@ -1,6 +1,6 @@
 #include "keyboard_and_mouse.h"
 
-const char* Keyboard_And_Mouse_Settings[] =
+const char* const Keyboard_And_Mouse_Settings[] =
 {
 	// Keyboard_&_Mouse_Settings
 	"mouse_inverty",

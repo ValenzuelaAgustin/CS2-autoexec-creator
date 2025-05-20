@@ -1,7 +1,7 @@
 #ifndef KEYBOARD_AND_MOUSE_H
 #define KEYBOARD_AND_MOUSE_H
 
-extern const char* Keyboard_And_Mouse_Settings[];
+extern const char* const Keyboard_And_Mouse_Settings[];
 
 enum
 {
