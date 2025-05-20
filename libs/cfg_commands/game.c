@@ -3,7 +3,7 @@
 const char* Game_Settings[] =
 {
 	// Game
-	"con_enable",						// Launched_With_Developer_Console ( TODO: Check )
+	"con_enable",
 	"mm_dedicated_search_maxping",
 	"rate",
 	"cl_net_buffer_ticks",
@@ -83,7 +83,7 @@ const char* Game_Settings[] =
 	"cl_crosshairalpha",
 	"cl_crosshair_t",
 	"cl_crosshairgap_useweaponvalue",
-	"",							// Use_crosshair_color_for_scope_dot
+	"cl_ironsight_usecrosshaircolor",
 	"cl_show_observer_crosshair",
 	"cl_observed_bot_crosshair",
 
