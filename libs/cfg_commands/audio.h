@@ -1,8 +1,6 @@
 #ifndef AUDIO_H
 #define AUDIO_H
 
-//	https://steamcommunity.com/sharedfiles/filedetails/?id=3046217806
-
 extern const char* const Audio_Settings[];
 
 enum
