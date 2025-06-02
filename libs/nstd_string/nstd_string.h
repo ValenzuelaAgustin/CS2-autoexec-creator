@@ -8,6 +8,9 @@ enum
 	STRING_NOT_FOUND
 };
 
+#define TO_LOWER(c) ( ((c) >= 'A' && (c) <= 'Z') ? (c) | (1<<5) : (c) )
+#define TO_UPPER(c) ( ((c) >= 'a' && (c) <= 'z') ? (c) & ~(1<<5) : (c) )
+
 long strlength(const char* string);
 
 char* copy_file_to_string(const char* file_name);
