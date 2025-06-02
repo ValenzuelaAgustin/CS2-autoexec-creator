@@ -10,11 +10,10 @@ enum
 
 long strlength(const char* string);
 
-/*
- * @param target_string String that will be searched in the file provided.
- * @param file_name File name and location.
- * @return position of the string in the file.
- */
+char* copy_file_to_string(const char* file_name);
+
+long search_for_target_string(const char* target_string, const char* string);
+
 long search_string_in_file(const char* target_string, const char* file_name);
 
 #endif
