@@ -2,6 +2,7 @@
 #define KEYBOARD_AND_MOUSE_H
 
 extern const char* const Keyboard_And_Mouse_Settings[];
+extern const char* const input_bindings[];
 
 enum
 {

@@ -11,7 +11,7 @@ long strlength(const char* string)
 
 char* copy_file_to_string(const char* file_name)
 {
-	FILE *file = fopen(file_name, "rb");
+	FILE* file = fopen(file_name, "rb");
 	char* string = NULL;
 	long size;
 
