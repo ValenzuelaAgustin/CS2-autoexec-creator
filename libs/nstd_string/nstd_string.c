@@ -42,10 +42,26 @@ long search_for_target_string(const char* target_string, const char* string)
 
 	size_t i, j;
 
-	for (i = 0, j = 0; target_string[j];)
+	for (i = 0, j = 0; string[i] && target_string[j];)
 	{
 		for (; string[i] && string[i] != target_string[0]; i++);
 		for (j = 0; string[i] && target_string[j] && string[i] == target_string[j]; i++, j++);
+	}
+
+	return (target_string[j]) ? STRING_NOT_FOUND : i - j;
+}
+
+long search_for_quoted_target_string(const char* target_string, const char* string)
+{
+	if (target_string == NULL || string == NULL)
+		return INVALID_INPUT;
+
+	size_t i, j;
+
+	for (i = 0, j = 0; string[i] && (target_string[j] || string[i] != '\"');)
+	{
+		for (; string[i] && string[i] != '\"'; i++);
+		for (j = 0, i++; string[i] && target_string[j] && string[i] == target_string[j]; i++, j++);
 	}
 
 	return (target_string[j]) ? STRING_NOT_FOUND : i - j;
