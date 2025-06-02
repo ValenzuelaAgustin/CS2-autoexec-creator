@@ -105,7 +105,7 @@ const char* const Keyboard_And_Mouse_Settings[] =
 	NULL
 };
 
-char* input_bindings[] =
+const char* const input_bindings[] =
 {
     // Alphabet keys
     "a", "b", "c", "d", "e", "f", "g", "h", "i", "j",
