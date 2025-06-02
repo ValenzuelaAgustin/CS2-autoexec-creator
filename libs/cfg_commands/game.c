@@ -1,4 +1,5 @@
 #include "game.h"
+#include <stdlib.h>
 
 const char* const Game_Settings[] =
 {
@@ -112,5 +113,6 @@ const char* const Game_Settings[] =
 	"cl_hud_telemetry_net_misdelivery_show",
 	"cl_hud_telemetry_net_misdelivery_poor",
 	"cl_hud_telemetry_net_quality_graph_show",
-	"cl_hud_telemetry_net_detailed"
+	"cl_hud_telemetry_net_detailed",
+	NULL
 };

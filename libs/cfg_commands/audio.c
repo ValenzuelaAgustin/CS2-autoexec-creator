@@ -1,4 +1,5 @@
 #include "audio.h"
+#include <stdlib.h>
 
 const char* const Audio_Settings[] =
 {
@@ -34,5 +35,6 @@ const char* const Audio_Settings[] =
 	"",					// Competitive_EQ ( TODO: Check ) snd_eq_competitive
 	"",					// Casual_EQ ( TODO: Check ) snd_eq_casual
 	"",					// Deathmatch_EQ ( TODO: Check ) snd_eq_deathmatch
-	""					// Arms_Race_EQ ( TODO: Check ) snd_eq_arms_race
+	"",					// Arms_Race_EQ ( TODO: Check ) snd_eq_arms_race
+	NULL
 };
