@@ -13,6 +13,8 @@ enum
 	Zoom_Button_Hold,
 	Mouse_Sensitivity,
 	Zoom_Sensitivity_Multiplier,
+	Yaw,
+	Pitch,
 
 	// Movement_Keys
 	Toggle_Inventory_Display,

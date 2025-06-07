@@ -10,6 +10,8 @@ const char* const Keyboard_And_Mouse_Settings[] =
 	"cl_debounce_zoom",
 	"sensitivity",
 	"zoom_sensitivity_ratio",
+	"yaw",
+	"pitch",
 
 	// Movement_Keys
 	"show_loadout_toggle",
@@ -107,37 +109,37 @@ const char* const Keyboard_And_Mouse_Settings[] =
 
 const char* const input_bindings[] =
 {
-    // Alphabet keys
-    "a", "b", "c", "d", "e", "f", "g", "h", "i", "j",
-    "k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
-    "u", "v", "w", "x", "y", "z",
+	// Alphabet keys
+	"a", "b", "c", "d", "e", "f", "g", "h", "i", "j",
+	"k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
+	"u", "v", "w", "x", "y", "z",
 
-    // Number keys
-    "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+	// Number keys
+	"0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
 
-    // Function keys
-    "f1", "f2", "f3", "f4", "f5", "f6",
-    "f7", "f8", "f9", "f10", "f11", "f12",
+	// Function keys
+	"f1", "f2", "f3", "f4", "f5", "f6",
+	"f7", "f8", "f9", "f10", "f11", "f12",
 
-    // Control keys
-    "shift", "ctrl", "alt", "tab", "capslock", "esc", "enter", "space",
-    "backspace", "delete", "insert", "home", "end", "pgup", "pgdn",
+	// Control keys
+	"shift", "ctrl", "alt", "tab", "capslock", "esc", "enter", "space",
+	"backspace", "delete", "insert", "home", "end", "pgup", "pgdn",
 
-    // Arrow keys
-    "uparrow", "downarrow", "leftarrow", "rightarrow",
+	// Arrow keys
+	"uparrow", "downarrow", "leftarrow", "rightarrow",
 
-    // Mouse buttons
-    "mouse1", "mouse2", "mouse3", "mouse4", "mouse5",
-    "mwheelup", "mwheeldown",
+	// Mouse
+	"mouse_x", "mouse_y", "mouse1", "mouse2", "mouse3", "mouse4", "mouse5",
+	"mwheelup", "mwheeldown",
 
-    // Numpad keys
-    "kp_ins", "kp_end", "kp_downarrow", "kp_pgdn",
-    "kp_leftarrow", "kp_5", "kp_rightarrow",
-    "kp_home", "kp_uparrow", "kp_pgup",
-    "kp_slash", "kp_multiply", "kp_minus",
-    "kp_plus", "kp_enter", "kp_del",
+	// Numpad keys
+	"kp_ins", "kp_end", "kp_downarrow", "kp_pgdn",
+	"kp_leftarrow", "kp_5", "kp_rightarrow",
+	"kp_home", "kp_uparrow", "kp_pgup",
+	"kp_slash", "kp_multiply", "kp_minus",
+	"kp_plus", "kp_enter", "kp_del",
 
-    // Miscellaneous
-    "`", "-", "=", "[", "]", "\\", ";", "'", ",", ".", "/",
-    NULL
+	// Miscellaneous
+	"`", "-", "=", "[", "]", "\\", ";", "'", ",", ".", "/",
+	NULL
 };

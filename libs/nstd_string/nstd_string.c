@@ -4,7 +4,7 @@
 
 long strlength(const char* string)
 {
-	int i;
+	long i;
 	for (i = 0; string[i]; i++);
 	return i;
 }
@@ -18,7 +18,7 @@ char* copy_file_to_string(const char* file_name)
 	if (file == NULL)
 		return NULL;
 
-	fseek(file, 0, SEEK_END);
+	(void)fseek(file, 0, SEEK_END);
 	size = ftell(file);
 	if (size <= 0)
 		return NULL;
@@ -27,9 +27,9 @@ char* copy_file_to_string(const char* file_name)
 	if (string == NULL)
 		return NULL;
 
-	fseek(file, 0, SEEK_SET);
+	(void)fseek(file, 0, SEEK_SET);
 	(void)fread(string, 1, size, file);
-	fclose(file);
+	(void)fclose(file);
 	string[size] = '\0';
 
 	return string;
@@ -40,7 +40,7 @@ long search_for_target_string(const char* target_string, const char* string)
 	if (target_string == NULL || string == NULL)
 		return INVALID_INPUT;
 
-	size_t i, j;
+	long i, j;
 
 	for (i = 0, j = 0; string[i] && target_string[j];)
 	{
@@ -56,7 +56,7 @@ long search_for_quoted_target_string(const char* target_string, const char* stri
 	if (target_string == NULL || string == NULL)
 		return INVALID_INPUT;
 
-	size_t i, j;
+	long i, j;
 
 	for (i = 0, j = 0; string[i] && (target_string[j] || string[i] != '\"');)
 	{
