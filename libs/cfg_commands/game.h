@@ -1,7 +1,10 @@
 #ifndef GAME_H
 #define GAME_H
 
-extern const char* const Game_Settings[];
+extern const char* Game_Settings[];
+extern const char* Game_Settings_Names[];
+extern const char* Game_Settings_Sub_Menu_Titles[];
+extern int Game_Sub_Menu_Last_Config[];
 
 enum
 {

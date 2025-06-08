@@ -1,9 +1,9 @@
 #include "keyboard_and_mouse.h"
 #include <stdlib.h>
 
-const char* const Keyboard_And_Mouse_Settings[] =
+const char* Keyboard_And_Mouse_Settings[] =
 {
-	// Keyboard_&_Mouse_Settings
+	// Keyboard & Mouse Settings
 	"mouse_inverty",
 	"option_duck_method",
 	"option_speed_method",
@@ -13,7 +13,7 @@ const char* const Keyboard_And_Mouse_Settings[] =
 	"yaw",
 	"pitch",
 
-	// Movement_Keys
+	// Movement Keys
 	"show_loadout_toggle",
 	"+forward",
 	"+back",
@@ -23,7 +23,7 @@ const char* const Keyboard_And_Mouse_Settings[] =
 	"+duck",
 	"+jump",
 
-	// Weapon_Keys
+	// Weapon Keys
 	"+use",
 	"+attack",
 	"+attack2",
@@ -53,7 +53,7 @@ const char* const Keyboard_And_Mouse_Settings[] =
 	"slot13",
 	"+spray_menu",
 
-	// Ul_Keys
+	// UI Keys
 	"+showscores",
 	"+cl_show_team_equipment",
 	"toggleradarscale",
@@ -61,7 +61,7 @@ const char* const Keyboard_And_Mouse_Settings[] =
 	"teammenu",
 	"toggleconsole",
 
-	// Communication_Options
+	// Communication Options
 	"player_ping",
 	"radio",
 	"radio1",
@@ -72,7 +72,7 @@ const char* const Keyboard_And_Mouse_Settings[] =
 	"+voicerecord",
 	"clutch_mode_toggle",
 
-	// Chat_Wheel_Keys
+	// Chat Wheel Keys
 	"+radialradio",
 	"+radialradio2",
 	"+radialradio3",
@@ -103,11 +103,139 @@ const char* const Keyboard_And_Mouse_Settings[] =
 	"cl_radial_radio_tab_2_text_5",
 	"cl_radial_radio_tab_2_text_6",
 	"cl_radial_radio_tab_2_text_7",
-	"cl_radial_radio_tab_2_text_8",
-	NULL
+	"cl_radial_radio_tab_2_text_8"
 };
 
-const char* const input_bindings[] =
+const char* Keyboard_And_Mouse_Settings_Names[] =
+{
+	// Keyboard & Mouse Settings
+	"Reverse Mouse",
+	"Duck Mode",
+	"Walk Mode",
+	"Zoom Button Hold",
+	"Mouse Sensitivity",
+	"Zoom Sensitivity Multiplier",
+	"Yaw",
+	"Pitch",
+
+	// Movement Keys
+	"Toggle Inventory Display",
+	"Move Forward",
+	"Move Backward",
+	"Move Left (strafe)",
+	"Move Right (strafe)",
+	"walk",
+	"Duck",
+	"Jump",
+
+	// Weapon Keys
+	"Use",
+	"Fire",
+	"Secondary Fire",
+	"Reload",
+	"Radial Weapon Menu",
+	"Select previous Weapon",
+	"Select Next Weapon",
+	"Last Weapon Used",
+	"Drop Weapon",
+	"Inspect Weapon",
+	"Switch Viewmodel Left/Right Hand",
+	"Buy Menu",
+	"Autobuy",
+	"Rebuy",
+	"Primary Weapon",
+	"Secondary Weapon",
+	"Melee Weapons",
+	"Cycle Grenades",
+	"Explosives & Traps",
+	"HE Grenade",
+	"Flashbang",
+	"Smoke Grenade",
+	"Decoy Grenade",
+	"Molotov Cocktail / Incendiary Grenade",
+	"Zeus x27",
+	"Healthshot",
+	"Utility Items",
+	"Graffiti Menu",
+
+	// UI Keys
+	"Scoreboard",
+	"Show Team Equipment",
+	"Toggle Radar Zoom",
+	"Call Vote",
+	"Choose Team",
+	"Toggle Console",
+
+	// Communication Options
+	"Player Ping",
+	"Radio Message",
+	"Command Radio Message",
+	"Standard Radio Message",
+	"Report Radio Message",
+	"Team Message",
+	"Chat Message",
+	"Use Microphone",
+	"Temporarily Disable Incoming Chat",
+
+	// Chat Wheel Keys
+	"Chat Wheel 1",
+	"Chat Wheel 2",
+	"Chat Wheel 3",
+
+	// Chat Wheel phrases
+	"Chat Wheel 1 Text 1",
+	"Chat Wheel 1 Text 2",
+	"Chat Wheel 1 Text 3",
+	"Chat Wheel 1 Text 4",
+	"Chat Wheel 1 Text 5",
+	"Chat Wheel 1 Text 6",
+	"Chat Wheel 1 Text 7",
+	"Chat Wheel 1 Text 8",
+
+	"Chat Wheel 2 Text 1",
+	"Chat Wheel 2 Text 2",
+	"Chat Wheel 2 Text 3",
+	"Chat Wheel 2 Text 4",
+	"Chat Wheel 2 Text 5",
+	"Chat Wheel 2 Text 6",
+	"Chat Wheel 2 Text 7",
+	"Chat Wheel 2 Text 8",
+
+	"Chat Wheel 3 Text 1",
+	"Chat Wheel 3 Text 2",
+	"Chat Wheel 3 Text 3",
+	"Chat Wheel 3 Text 4",
+	"Chat Wheel 3 Text 5",
+	"Chat Wheel 3 Text 6",
+	"Chat Wheel 3 Text 7",
+	"Chat Wheel 3 Text 8"
+};
+
+const char* Keyboard_And_Mouse_Settings_Sub_Menu_Titles[] =
+{
+	"Keyboard & Mouse Settings",
+	"Movement Keys",
+	"Weapon Keys",
+	"UI Keys",
+	"Communication Options",
+	"Chat Wheel Keys",
+	"Chat Wheel phrases"
+};
+
+int Keyboard_And_Mouse_Sub_Menu_Last_Config[] =
+{
+	Pitch,
+	Jump,
+	Graffiti_Menu,
+	Toggle_Console,
+	Temporarily_Disable_Incoming_Chat,
+	Chat_Wheel_3,
+	Chat_Wheel_3_Text_8,
+	-1
+};
+
+/*
+const char* input_bindings[] =
 {
 	// Alphabet keys
 	"a", "b", "c", "d", "e", "f", "g", "h", "i", "j",
@@ -143,3 +271,4 @@ const char* const input_bindings[] =
 	"`", "-", "=", "[", "]", "\\", ";", "'", ",", ".", "/",
 	NULL
 };
+*/

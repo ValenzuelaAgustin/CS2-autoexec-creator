@@ -1,7 +1,7 @@
 #include "game.h"
 #include <stdlib.h>
 
-const char* const Game_Settings[] =
+const char* Game_Settings[] =
 {
 	// Game
 	"con_enable",
@@ -113,6 +113,151 @@ const char* const Game_Settings[] =
 	"cl_hud_telemetry_net_misdelivery_show",
 	"cl_hud_telemetry_net_misdelivery_poor",
 	"cl_hud_telemetry_net_quality_graph_show",
-	"cl_hud_telemetry_net_detailed",
-	NULL
+	"cl_hud_telemetry_net_detailed"
+};
+
+extern const char* Game_Settings_Names[] =
+{
+	// Game
+	"Launched With Developer Console",
+	"Max Acceptable Matchmaking Ping",
+	"Max Acceptable Game Traffic Bandwidth",
+	"Buffering to smooth over packet loss / jitter",
+	"Install Counter-Strike Workshop Tools",
+
+	// Hud
+	"HUD Scale",
+	"HUD Color",
+	"Large Player Count",
+	"Community Notification Location",
+	"Community Notification Horizontal Offset",
+	"Community Notification Vertical Offset",
+	"Glow Weapon with Rarity Color",
+
+	// Team
+	"Show Team ID Through Walls",
+	"Show Player Colors in Competitive",
+	"Use Player Colors on Team ID",
+	"Friends Lobby Default Permissions",
+	"Looking to Play when Counter-Strike Starts",
+
+	// Communication
+	"Player Pings",
+	"Mute Enemy Team",
+	"Mute All But Friends",
+	"Text Filtering",
+	"Allow Animated Avatars",
+	"Hide Avatar Images and Customized Items",
+	"Clean Player Names",
+
+	// Spectator / Scoreboard
+	"Spectator/Map Vote Number Selection Method",
+	"Scoreboard Mouse Enable / End of Match Scoreboard Toggle",
+	"End of Match Local Player Defeat Animation",
+	"Survivors Always On",
+	"Smooth Spectator Camera",
+	"Smooth Spectator Camera Speed",
+
+	// Item
+	"Delay Sniper Rifle Un-Scope after Shot",
+	"Auto Re-Zoom Sniper Rifle after Shot",
+	"Detach Silencer on M4A1-S and USPS",
+	"Viewmodel Position",
+	"Preferred Viewmodel Left/Right Handedness",
+	"First Person Tracers",
+	"Always Show Inventory",
+	"Open Buy Menu With Use Key",
+	"Buy Menu Number Keys",
+	"Buy Menu Donation Key",
+	"Last Weapon on Radial Weapon Tap",
+
+	// Radar / Tablet
+	"Radar Centers The Player",
+	"Radar IS Rotating",
+	"Radar Hud Map Blends With Background",
+	"Radar Hud Background Opacity",
+	"Radar Hud Size",
+	"Radar Map Zoom",
+	"Radar Map Alternate Zoom",
+	"Toggle Shape With Scoreboard",
+	"Radar Is Zooming Dynamically",
+
+	// Crosshair
+	"Crosshair Style",
+	"Friendly Fire Reticle Warning",
+	"Follow Recoil",
+	"Center Dot",
+	"Length",
+	"Thickness",
+	"Gap",
+	"Draw Outline",
+	"Outline Thickness",
+	"Red",
+	"Green",
+	"Blue",
+	"Use Alpha",
+	"Alpha",
+	"T style",
+	"Deployed Weapon Gap",
+	"Use crosshair color for scope dot",
+	"Show Player Crosshairs",
+	"Show my crosshair when spectating bots",
+
+	// Grenade Line-up Reticle
+	"Keep Regular Crosshair",
+	"Flashbangs Crosshair",
+	"Flashbangs Crosshair Delay",
+	"HE grenades Crosshair",
+	"HE grenades Crosshair Delay",
+	"Molotov cocktails / Incendiary grenades Crosshair",
+	"Molotov cocktails / Incendiary grenades Crosshair Delay",
+	"Smoke grenades Crosshair",
+	"Smoke grenades Crosshair Delay",
+	"Decoy grenades Crosshair",
+	"Decoy grenades Crosshair Delay",
+
+	// Damage Prediction
+	"Predict Body Shot Effects",
+	"Predict Head Shot Effects",
+	"Predict Kill Ragdolls",
+
+	// Telemetry
+	"Show frame time and FPS",
+	"Frame time warning threshold",
+	"Show ping",
+	"Show network problems (ticks missed due to loss / jitter)",
+	"Network tick miss rate warning threshold",
+	"Show network jitter / misdelivery graph",
+	"Use the detailed network quality display"
+};
+
+extern const char* Game_Settings_Sub_Menu_Titles[] =
+{
+	"Game",
+	"Hud",
+	"Team",
+	"Communication",
+	"Spectator / Scoreboard",
+	"Item",
+	"Radar / Tablet",
+	"Crosshair",
+	"Grenade Line-up Reticle",
+	"Damage Prediction",
+	"Telemetry"
+};
+
+extern int Game_Sub_Menu_Last_Config[] =
+{
+	Install_Counter_Strike_Workshop_Tools,
+	Glow_Weapon_with_Rarity_Color,
+	Looking_to_Play_when_Counter_Strike_Starts,
+	Clean_Player_Names,
+	Smooth_Spectator_Camera_Speed,
+	Last_Weapon_on_Radial_Weapon_Tap,
+	Radar_Is_Zooming_Dynamically,
+	Show_my_crosshair_when_spectating_bots,
+	Decoy_grenades_Crosshair_Delay,
+	Predict_Kill_Ragdolls,
+	Use_the_detailed_network_quality_display,
+	-1
 };

@@ -1,12 +1,16 @@
 #ifndef KEYBOARD_AND_MOUSE_H
 #define KEYBOARD_AND_MOUSE_H
 
-extern const char* const Keyboard_And_Mouse_Settings[];
-extern const char* const input_bindings[];
+extern const char* Keyboard_And_Mouse_Settings[];
+extern const char* Keyboard_And_Mouse_Settings_Names[];
+extern const char* Keyboard_And_Mouse_Settings_Sub_Menu_Titles[];
+extern int Keyboard_And_Mouse_Sub_Menu_Last_Config[];
+
+// extern const char* input_bindings[];
 
 enum
 {
-	// Keyboard_&_Mouse_Settings
+	// Keyboard & Mouse Settings
 	Reverse_Mouse,
 	Duck_Mode,
 	Walk_Mode,
@@ -16,7 +20,7 @@ enum
 	Yaw,
 	Pitch,
 
-	// Movement_Keys
+	// Movement Keys
 	Toggle_Inventory_Display,
 	Move_Forward,
 	Move_Backward,
@@ -26,7 +30,7 @@ enum
 	Duck,
 	Jump,
 
-	// Weapon_Keys
+	// Weapon Keys
 	Use,
 	Fire,
 	Secondary_Fire,
@@ -56,7 +60,7 @@ enum
 	Utility_Items,
 	Graffiti_Menu,
 
-	// Ul_Keys
+	// UI Keys
 	Scoreboard,
 	Show_Team_Equipment,
 	Toggle_Radar_Zoom,
@@ -64,7 +68,7 @@ enum
 	Choose_Team,
 	Toggle_Console,
 
-	// Communication_Options
+	// Communication Options
 	Player_Ping,
 	Radio_Message,
 	Command_Radio_Message,
@@ -75,7 +79,7 @@ enum
 	Use_Microphone,
 	Temporarily_Disable_Incoming_Chat,
 
-	// Chat_Wheel_Keys
+	// Chat Wheel Keys
 	Chat_Wheel_1,
 	Chat_Wheel_2,
 	Chat_Wheel_3,
@@ -106,7 +110,7 @@ enum
 	Chat_Wheel_3_Text_5,
 	Chat_Wheel_3_Text_6,
 	Chat_Wheel_3_Text_7,
-	Chat_Wheel_3_Text_8,
+	Chat_Wheel_3_Text_8
 };
 
 #endif
