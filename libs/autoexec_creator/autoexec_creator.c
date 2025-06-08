@@ -9,25 +9,37 @@ void append_configs_to_file(char** config_file_string, FILE* autoexec)
 	if (config_file_string == NULL || autoexec == NULL)
 		return;
 
-	char** config[] = {(char**)Audio_Settings, (char**)Game_Settings, (char**)Keyboard_And_Mouse_Settings, NULL};
+	//char** config[] = {(char**)Audio_Settings, (char**)Game_Settings, (char**)Keyboard_And_Mouse_Settings, NULL};
 	long i, j, k;
 	long setting_position;
 	long parameter_position;
-	long str_length;
+	int str_length;
 
-	for (i = 0; config[i] != NULL; i++)
+	int was_found;
+	int sub_menu;
+
+	for (i = 0; i < menu_ammount; i++)
 	{
-		for (j = 0; config[i][j] != NULL; j++)
+		for (j = 0, sub_menu = 0; cfg_menu[i].sub_menu_last_config[sub_menu] > -1; j++, sub_menu += (j > cfg_menu[i].sub_menu_last_config[sub_menu])? 1 : 0)
 		{
-			for (k = 0; config_file_string[k] != NULL; k++)
+			if (j == 0)
 			{
-				setting_position = search_for_quoted_target_string(config[i][j], config_file_string[k]);
-				if (setting_position == STRING_NOT_FOUND)
+				fprintf(autoexec, "%s//%s\n\n", (i != 0) ? "\n\n" : "", cfg_menu[i].sub_menu_title[sub_menu]);
+			}
+			else if (j == cfg_menu[i].sub_menu_last_config[sub_menu - 1] + 1)
+			{
+				fprintf(autoexec, "\n\n//%s\n\n", cfg_menu[i].sub_menu_title[sub_menu]);
+			}
+
+			for (k = 0, was_found = 0; config_file_string[k] != NULL; k++)
+			{
+				setting_position = search_for_quoted_target_string(cfg_menu[i].config[j], config_file_string[k]);
+				if (setting_position == STRING_NOT_FOUND || setting_position == INVALID_INPUT)
 				{
 					continue;
 				}
 				parameter_position = search_inline_parameter(config_file_string[k], setting_position);
-				if (parameter_position == PARAMETER_NOT_FOUND)
+				if (parameter_position == PARAMETER_NOT_FOUND || parameter_position == INVALID_INPUT)
 				{
 					continue;
 				}
@@ -35,11 +47,19 @@ void append_configs_to_file(char** config_file_string, FILE* autoexec)
 
 				if (i == 2 && j >= Yaw && j <= Chat_Wheel_3)
 				{
-					fprintf(autoexec, "bind \"%.*s\" \"%s\"\n", str_length, config_file_string[k] + parameter_position, config[i][j]);
+					fprintf(autoexec, "bind \"%.*s\" \"%s\"\t\t\t\t// %s\n", str_length, config_file_string[k] + parameter_position, cfg_menu[i].config[j], cfg_menu[i].config_name[j]);
+					was_found = 1;
 					continue;
 				}
-				fprintf(autoexec, "%s \"%.*s\"\n", config[i][j], str_length, config_file_string[k] + parameter_position);
+				fprintf(autoexec, "%s \"%.*s\"\t\t\t\t// %s\n", cfg_menu[i].config[j], str_length, config_file_string[k] + parameter_position, cfg_menu[i].config_name[j]);
+				was_found = 1;
 			}
+			if(cfg_menu[i].config[j][0] == '\0')
+				continue;
+			if (!was_found && i == 2 && j >= Yaw && j <= Chat_Wheel_3)
+				fprintf(autoexec, "// bind \"\" \"%s\"\t\t\t\t// %s\n", cfg_menu[i].config[j], cfg_menu[i].config_name[j]);
+			else if (!was_found)
+				fprintf(autoexec, "// %s \"\"\t\t\t\t// %s\n", cfg_menu[i].config[j], cfg_menu[i].config_name[j]);
 		}
 	}
 }
