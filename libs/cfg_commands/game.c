@@ -116,7 +116,7 @@ const char* Game_Settings[] =
 	"cl_hud_telemetry_net_detailed"
 };
 
-extern const char* Game_Settings_Names[] =
+const char* Game_Settings_Names[] =
 {
 	// Game
 	"Launched With Developer Console",
@@ -231,7 +231,7 @@ extern const char* Game_Settings_Names[] =
 	"Use the detailed network quality display"
 };
 
-extern const char* Game_Settings_Sub_Menu_Titles[] =
+const char* Game_Settings_Sub_Menu_Titles[] =
 {
 	"Game",
 	"Hud",
@@ -246,7 +246,7 @@ extern const char* Game_Settings_Sub_Menu_Titles[] =
 	"Telemetry"
 };
 
-extern int Game_Sub_Menu_Last_Config[] =
+int Game_Sub_Menu_Last_Config[] =
 {
 	Install_Counter_Strike_Workshop_Tools,
 	Glow_Weapon_with_Rarity_Color,

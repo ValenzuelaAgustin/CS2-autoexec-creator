@@ -1,8 +1,8 @@
 #include "cfg_commands.h"
 
-extern int ammount_of_menu = 3;
+int ammount_of_menu = 3;
 
-extern cfg_menu_t config_menu[] =
+cfg_menu_t config_menu[] =
 {
 	{
 		"Audio",

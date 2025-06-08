@@ -83,7 +83,7 @@ const char* Audio_Settings_Sub_Menu_Titles[] =
 	"Game Mode EQ"
 };
 
-extern int Audio_Sub_Menu_Last_Config[] =
+int Audio_Sub_Menu_Last_Config[] =
 {
 	Play_Audio_When_Game_In_Background,
 	Microphone_Trigger_Threshold,
