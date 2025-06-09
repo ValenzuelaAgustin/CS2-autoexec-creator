@@ -61,6 +61,8 @@ long search_for_quoted_target_string(const char* target_string, const char* stri
 	for (i = 0, j = 0; string[i] && (target_string[j] || string[i] != '\"');)
 	{
 		for (; string[i] && string[i] != '\"'; i++);
+		if (string[i] == '\0')
+			return STRING_NOT_FOUND;
 		for (j = 0, i++; string[i] && target_string[j] && string[i] == target_string[j]; i++, j++);
 	}
 
