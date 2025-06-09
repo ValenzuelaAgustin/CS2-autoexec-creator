@@ -52,16 +52,13 @@ static long search_setting_parameter(const char* config_file_string, long menu, 
 		return INVALID_INPUT;
 
 	long setting_position;
-	long parameter_position;
 
 	setting_position = search_for_quoted_target_string(cfg_menu[menu].config[config], config_file_string);
 	if (setting_position < 0)
 	{
 		return setting_position;
 	}
-	parameter_position = search_inline_parameter(config_file_string, setting_position);
-
-	return parameter_position;
+	return search_inline_parameter(config_file_string, setting_position);
 }
 
 static void append_config_to_file(FILE* autoexec, char** config_file_string, long menu, long config)
@@ -106,25 +103,25 @@ static void append_config_to_file(FILE* autoexec, char** config_file_string, lon
 
 void write_autoexec(char** config_file_string, FILE* autoexec)
 {
-	if (config_file_string == NULL || autoexec == NULL)
+	if (config_file_string == NULL || config_file_string[0] == NULL || autoexec == NULL)
 		return;
 
-	long i, j;
+	long menu, config;
 	int sub_menu;
 
-	for (i = 0; i < menu_ammount; i++)
+	for (menu = 0; menu < menu_ammount; menu++)
 	{
-		for (j = 0, sub_menu = 0; cfg_menu[i].sub_menu_last_config[sub_menu] > -1; j++, sub_menu += (j > cfg_menu[i].sub_menu_last_config[sub_menu])? 1 : 0)
+		for (config = 0, sub_menu = 0; cfg_menu[menu].sub_menu_last_config[sub_menu] > -1; config++, sub_menu += (config > cfg_menu[menu].sub_menu_last_config[sub_menu])? 1 : 0)
 		{
-			if (j == 0)
+			if (config == 0)
 			{
-				fprintf(autoexec, "%s//%s\n\n", (i != 0) ? "\n\n" : "", cfg_menu[i].sub_menu_title[sub_menu]);
+				fprintf(autoexec, "%s//%s\n\n", (menu != 0) ? "\n\n" : "", cfg_menu[menu].sub_menu_title[sub_menu]);
 			}
-			else if (j == cfg_menu[i].sub_menu_last_config[sub_menu - 1] + 1)
+			else if (config == cfg_menu[menu].sub_menu_last_config[sub_menu - 1] + 1)
 			{
-				fprintf(autoexec, "\n\n//%s\n\n", cfg_menu[i].sub_menu_title[sub_menu]);
+				fprintf(autoexec, "\n\n//%s\n\n", cfg_menu[menu].sub_menu_title[sub_menu]);
 			}
-			append_config_to_file(autoexec, config_file_string, i, j);
+			append_config_to_file(autoexec, config_file_string, menu, config);
 		}
 	}
 }
