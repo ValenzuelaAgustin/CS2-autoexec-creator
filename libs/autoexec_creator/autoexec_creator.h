@@ -9,4 +9,6 @@ enum
 
 void append_configs_to_file(char** config_file_string, FILE* autoexec);
 
+void write_autoexec(char** config_file_string, FILE* autoexec);
+
 #endif
