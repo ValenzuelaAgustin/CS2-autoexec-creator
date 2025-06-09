@@ -1,5 +1,4 @@
 #include "keyboard_and_mouse.h"
-#include <stdlib.h>
 
 const char* Keyboard_And_Mouse_Settings[] =
 {

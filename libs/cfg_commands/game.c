@@ -1,5 +1,4 @@
 #include "game.h"
-#include <stdlib.h>
 
 const char* Game_Settings[] =
 {
