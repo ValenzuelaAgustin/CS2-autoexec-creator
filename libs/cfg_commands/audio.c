@@ -5,7 +5,7 @@ const char* Audio_Settings[] =
 	// Audio
 	"volume",
 	"snd_menumap_volume",
-	"voice_device_override",
+	"sound_device_override",
 	"snd_headphone_eq",
 	"snd_spatialize_lerp",
 	"snd_steamaudio_enable_perspective_correction",
