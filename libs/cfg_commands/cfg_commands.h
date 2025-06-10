@@ -4,7 +4,7 @@
 #include "audio.h"
 #include "game.h"
 #include "keyboard_and_mouse.h"
-#include "other_commands.h"
+#include "other_settings.h"
 
 typedef struct
 {

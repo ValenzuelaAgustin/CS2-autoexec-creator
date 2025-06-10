@@ -1,6 +1,6 @@
 #include "cfg_commands.h"
 
-int menu_ammount = 3;
+int menu_ammount = 4;
 
 cfg_menu_t cfg_menu[] =
 {
@@ -21,5 +21,11 @@ cfg_menu_t cfg_menu[] =
 		Keyboard_And_Mouse_Sub_Menu_Last_Config,
 		Keyboard_And_Mouse_Settings_Names,
 		Keyboard_And_Mouse_Settings
+	},
+	{
+		Other_Settings_Sub_Menu_Titles,
+		Other_Settings_Sub_Menu_Last_Config,
+		Other_Settings_Names,
+		Other_Settings
 	}
 };
