@@ -113,13 +113,9 @@ void write_autoexec(char** config_file_string, FILE* autoexec)
 	{
 		for (config = 0, sub_menu = 0; cfg_menu[menu].sub_menu_last_config[sub_menu] > -1; config++, sub_menu += (config > cfg_menu[menu].sub_menu_last_config[sub_menu])? 1 : 0)
 		{
-			if (config == 0)
+			if (config == 0 || config == cfg_menu[menu].sub_menu_last_config[sub_menu - (sub_menu > 0)] + 1)
 			{
-				fprintf(autoexec, "%s//%s\n\n", (menu != 0) ? "\n\n" : "", cfg_menu[menu].sub_menu_title[sub_menu]);
-			}
-			else if (config == cfg_menu[menu].sub_menu_last_config[sub_menu - 1] + 1)
-			{
-				fprintf(autoexec, "\n\n//%s\n\n", cfg_menu[menu].sub_menu_title[sub_menu]);
+				fprintf(autoexec, "%s// %s\n\n", (menu != 0 || config != 0) ? "\n\n" : "",cfg_menu[menu].sub_menu_title[sub_menu]);
 			}
 			append_config_to_file(autoexec, config_file_string, menu, config);
 		}
