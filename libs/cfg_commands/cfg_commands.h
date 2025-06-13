@@ -17,4 +17,12 @@ typedef struct
 extern int menu_ammount;
 extern cfg_menu_t cfg_menu[];
 
+enum
+{
+	AUDIO,
+	GAME,
+	KEYBOARD_AND_MOUSE,
+	OTHER_SETTINGS
+};
+
 #endif

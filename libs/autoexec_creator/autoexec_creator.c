@@ -10,6 +10,16 @@ enum
 
 #define IS_BETWEEN(x, min, max) ((x) >= (min) && (x) <= (max))
 
+#define BINDING_TEXT "\nbind \"%.*s\" \"%s\"\t\t\t\t// %s"
+#define CONFIG_TEXT "\n%s \"%.*s\"\t\t\t\t// %s"
+#define COMMENTED_BINDING_TEXT "\n// bind \"\" \"%s\"\t\t\t\t// %s"
+#define COMMENTED_CONFIG_TEXT "\n// %s \"\"\t\t\t\t// %s"
+
+#define APPEND_BINDING(autoexec, menu, config, str_length, str) fprintf(autoexec, BINDING_TEXT, str_length, str, cfg_menu[menu].config[config], cfg_menu[menu].config_name[config])
+#define APPEND_CONFIG(autoexec, menu, config, str_length, str) fprintf(autoexec, CONFIG_TEXT, cfg_menu[menu].config[config], str_length, str, cfg_menu[menu].config_name[config])
+#define APPEND_COMMENTED_BINDING(autoexec, menu, config) fprintf(autoexec, COMMENTED_BINDING_TEXT, cfg_menu[menu].config[config], cfg_menu[menu].config_name[config])
+#define APPEND_COMMENTED_CONFIG(autoexec, menu, config) fprintf(autoexec, COMMENTED_CONFIG_TEXT, cfg_menu[menu].config[config], cfg_menu[menu].config_name[config])
+
 static long search_inline_parameter(const char* config_file_string, long setting_position);
 
 static long search_setting_parameter(const char* config_file_string, const char* config);
@@ -91,23 +101,23 @@ static void append_config_to_file(FILE* autoexec, char** config_file_string, lon
 		for (new_line_start = parameter_position; config_file_string[i][new_line_start] != '\n' && config_file_string[i][new_line_start] != '\0'; new_line_start++);
 		for (str_length = 0; config_file_string[i][parameter_position + str_length] != '\"'; str_length++);
 
-		if (menu == 2 && IS_BETWEEN(config, Yaw, Chat_Wheel_3))
+		if (menu == KEYBOARD_AND_MOUSE && IS_BETWEEN(config, Yaw, Chat_Wheel_3))
 		{
-			fprintf(autoexec, "\nbind \"%.*s\" \"%s\"\t\t\t\t// %s", str_length, config_file_string[i] + parameter_position, cfg_menu[menu].config[config], cfg_menu[menu].config_name[config]);
+			APPEND_BINDING(autoexec, menu, config, str_length, config_file_string[i] + parameter_position);
 			was_found = 1;
 			continue;
 		}
-		fprintf(autoexec, "\n%s \"%.*s\"\t\t\t\t// %s", cfg_menu[menu].config[config], str_length, config_file_string[i] + parameter_position, cfg_menu[menu].config_name[config]);
+		APPEND_CONFIG(autoexec, menu, config, str_length, config_file_string[i] + parameter_position);
 		was_found = 1;
 	}
 
 	if (was_found)
 		return;
 
-	if (menu == 2 && IS_BETWEEN(config, Yaw, Chat_Wheel_3))
-		fprintf(autoexec, "\n// bind \"\" \"%s\"\t\t\t\t// %s", cfg_menu[menu].config[config], cfg_menu[menu].config_name[config]);
+	if (menu == KEYBOARD_AND_MOUSE && IS_BETWEEN(config, Yaw, Chat_Wheel_3))
+		APPEND_COMMENTED_BINDING(autoexec, menu, config);
 	else
-		fprintf(autoexec, "\n// %s \"\"\t\t\t\t// %s", cfg_menu[menu].config[config], cfg_menu[menu].config_name[config]);
+		APPEND_COMMENTED_CONFIG(autoexec, menu, config);
 }
 
 void write_autoexec(char** config_file_string, FILE* autoexec)

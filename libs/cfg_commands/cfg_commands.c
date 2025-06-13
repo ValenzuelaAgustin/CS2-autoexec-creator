@@ -1,7 +1,5 @@
 #include "cfg_commands.h"
 
-int menu_ammount = 4;
-
 cfg_menu_t cfg_menu[] =
 {
 	{
@@ -29,3 +27,5 @@ cfg_menu_t cfg_menu[] =
 		Other_Settings
 	}
 };
+
+int menu_ammount = sizeof(cfg_menu) / sizeof(cfg_menu[0]);
