@@ -6,7 +6,7 @@
 
 static long search_inline_parameter(const char* string, long setting_position);
 
-static long search_setting_parameter(const char* config_file_string, long menu, long config);
+static long search_setting_parameter(const char* config_file_string, const char* config);
 
 static void append_config_to_file(FILE* autoexec, char** config_file_string, long menu, long config);
 
@@ -20,7 +20,7 @@ static long search_inline_parameter(const char* string, long setting_position)
 
 	for (i = setting_position; i > 0 && string[i] != '\n'; i--);
 
-	for ((string[i] == '\n') ? i++ : i, qm_counter = 0; i < setting_position - 1 && qm_counter < 2; i++)
+	for (i += string[i] == '\n', qm_counter = 0; i < setting_position - 1 && qm_counter < 2; i++)
 	{
 		if (string[i] == '\"')
 		{
@@ -46,14 +46,14 @@ static long search_inline_parameter(const char* string, long setting_position)
 	return (qm_counter == 2) ? parameter_position : PARAMETER_NOT_FOUND;
 }
 
-static long search_setting_parameter(const char* config_file_string, long menu, long config)
+static long search_setting_parameter(const char* config_file_string, const char* config)
 {
-	if (config_file_string == NULL || menu < 0 || config < 0)
+	if (config_file_string == NULL || config == NULL)
 		return INVALID_INPUT;
 
 	long setting_position;
 
-	setting_position = search_for_quoted_target_string(cfg_menu[menu].config[config], config_file_string);
+	setting_position = search_for_quoted_target_string(config, config_file_string);
 	if (setting_position < 0)
 	{
 		return setting_position;
@@ -74,7 +74,7 @@ static void append_config_to_file(FILE* autoexec, char** config_file_string, lon
 
 	for (i = 0, was_found = 0, new_line_start = 0; config_file_string[i] != NULL;)
 	{
-		parameter_position = search_setting_parameter(config_file_string[i] + new_line_start, menu, config);
+		parameter_position = search_setting_parameter(config_file_string[i] + new_line_start, cfg_menu[menu].config[config]);
 		if (parameter_position < 0)
 		{
 			i++;
@@ -111,11 +111,11 @@ void write_autoexec(char** config_file_string, FILE* autoexec)
 
 	for (menu = 0; menu < menu_ammount; menu++)
 	{
-		for (config = 0, sub_menu = 0; cfg_menu[menu].sub_menu_last_config[sub_menu] > -1; config++, sub_menu += (config > cfg_menu[menu].sub_menu_last_config[sub_menu])? 1 : 0)
+		for (config = 0, sub_menu = 0; cfg_menu[menu].sub_menu_last_config[sub_menu] > -1; config++, sub_menu += config > cfg_menu[menu].sub_menu_last_config[sub_menu])
 		{
-			if (config == 0 || config == cfg_menu[menu].sub_menu_last_config[sub_menu - (sub_menu > 0)] + 1)
+			if (!config || config == cfg_menu[menu].sub_menu_last_config[sub_menu - (sub_menu > 0)] + 1)
 			{
-				fprintf(autoexec, "%s// %s\n\n", (menu != 0 || config != 0) ? "\n\n" : "",cfg_menu[menu].sub_menu_title[sub_menu]);
+				fprintf(autoexec, "%s// %s\n\n", (menu || config) ? "\n\n" : "",cfg_menu[menu].sub_menu_title[sub_menu]);
 			}
 			append_config_to_file(autoexec, config_file_string, menu, config);
 		}
