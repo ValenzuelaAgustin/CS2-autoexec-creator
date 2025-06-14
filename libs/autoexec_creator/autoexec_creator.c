@@ -107,11 +107,12 @@ static void append_config_to_file(FILE* autoexec, char** config_file_string, lon
 
 		if (menu == KEYBOARD_AND_MOUSE && IS_BETWEEN(config, Yaw, Chat_Wheel_3))
 		{
+			for (j = 0; j < ammount_of_keys && search_for_quoted_target_string(Keys[j], config_file_string[i] + parameter_position - 1) != 1; j++);
+			if (j >= ammount_of_keys)
+				continue;
 			APPEND_BINDING(autoexec, menu, config, str_length, config_file_string[i] + parameter_position);
 			was_found = 1;
-			for (j = 0; j < ammount_of_keys && search_for_quoted_target_string(Keys[j], config_file_string[i] + parameter_position - 1) != 1; j++);
-			if (j < ammount_of_keys)
-				is_key_binded[j] = 1;
+			is_key_binded[j] = 1;
 			continue;
 		}
 		APPEND_CONFIG(autoexec, menu, config, str_length, config_file_string[i] + parameter_position);
