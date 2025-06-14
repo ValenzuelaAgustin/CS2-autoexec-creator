@@ -233,41 +233,48 @@ int Keyboard_And_Mouse_Sub_Menu_Last_Config[] =
 	-1
 };
 
-/*
-const char* input_bindings[] =
+const char* Keys[ammount_of_keys] =
 {
-	// Alphabet keys
-	"a", "b", "c", "d", "e", "f", "g", "h", "i", "j",
-	"k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
-	"u", "v", "w", "x", "y", "z",
+	// Letters
+	"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
+	"n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
 
-	// Number keys
-	"0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+	// Numbers (top row)
+	"1", "2", "3", "4", "5", "6", "7", "8", "9", "0",
 
 	// Function keys
-	"f1", "f2", "f3", "f4", "f5", "f6",
-	"f7", "f8", "f9", "f10", "f11", "f12",
+	"F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12",
 
-	// Control keys
-	"shift", "ctrl", "alt", "tab", "capslock", "esc", "enter", "space",
-	"backspace", "delete", "insert", "home", "end", "pgup", "pgdn",
+	// Punctuation and symbols
+	"`", "-", "=", "[", "]", "\\", ";", "'", ",", ".", "/",
+
+	// Control and modifier keys
+	"TAB", "CAPSLOCK", "ESCAPE", "ENTER", "SPACE", "BACKSPACE",
+	"SHIFT", "CTRL", "ALT",
 
 	// Arrow keys
-	"uparrow", "downarrow", "leftarrow", "rightarrow",
+	"UPARROW", "DOWNARROW", "LEFTARROW", "RIGHTARROW",
 
-	// Mouse
-	"mouse_x", "mouse_y", "mouse1", "mouse2", "mouse3", "mouse4", "mouse5",
-	"mwheelup", "mwheeldown",
+	// Navigation / editing keys
+	"INS", "DEL", "HOME", "END", "PGUP", "PGDN",
 
-	// Numpad keys
-	"kp_ins", "kp_end", "kp_downarrow", "kp_pgdn",
-	"kp_leftarrow", "kp_5", "kp_rightarrow",
-	"kp_home", "kp_uparrow", "kp_pgup",
-	"kp_slash", "kp_multiply", "kp_minus",
-	"kp_plus", "kp_enter", "kp_del",
+	// Misc system keys
+	"PAUSE", "SCROLLLOCK", "PRINTSCREEN",
 
-	// Miscellaneous
-	"`", "-", "=", "[", "]", "\\", ";", "'", ",", ".", "/",
-	NULL
+	// Keypad / Numpad
+	"KP_HOME", "KP_UPARROW", "KP_PGUP", "KP_LEFTARROW", "KP_5", "KP_RIGHTARROW",
+	"KP_END", "KP_DOWNARROW", "KP_PGDN", "KP_INS", "KP_DEL",
+	"KP_SLASH", "KP_MULTIPLY", "KP_MINUS", "KP_PLUS", "KP_ENTER", "KP_DECIMAL",
+
+	// Mouse inputs
+	"MOUSE1",
+	"MOUSE2",
+	"MOUSE3",
+	"MOUSE4",
+	"MOUSE5",
+	"MOUSE6",
+	"MOUSE7",
+	"MOUSE8",
+	"MWHEELUP",
+	"MWHEELDOWN"
 };
-*/
