@@ -10,25 +10,39 @@ enum
 
 #define IS_BETWEEN(x, min, max) ((x) >= (min) && (x) <= (max))
 
-#define BINDING_TEXT "\nbind \"%.*s\" \"%s\"\t\t\t\t// %s"
-#define CONFIG_TEXT "\n%s \"%.*s\"\t\t\t\t// %s"
-#define COMMENTED_BINDING_TEXT "\n// bind \"\" \"%s\"\t\t\t\t// %s"
-#define COMMENTED_CONFIG_TEXT "\n// %s \"\"\t\t\t\t// %s"
-
 #define CONFIG_LOADED_TEXT "echo -----------------------------------------------------------------------\necho -----------------------------Config loaded-----------------------------\necho -----------------------------------------------------------------------"
-
-#define APPEND_BINDING(autoexec, menu, config, str_length, str) fprintf(autoexec, BINDING_TEXT, str_length, str, cfg_menu[menu].config[config], cfg_menu[menu].config_name[config])
-#define APPEND_CONFIG(autoexec, menu, config, str_length, str) fprintf(autoexec, CONFIG_TEXT, cfg_menu[menu].config[config], str_length, str, cfg_menu[menu].config_name[config])
-#define APPEND_COMMENTED_BINDING(autoexec, menu, config) fprintf(autoexec, COMMENTED_BINDING_TEXT, cfg_menu[menu].config[config], cfg_menu[menu].config_name[config])
-#define APPEND_COMMENTED_CONFIG(autoexec, menu, config) fprintf(autoexec, COMMENTED_CONFIG_TEXT, cfg_menu[menu].config[config], cfg_menu[menu].config_name[config])
 
 char is_key_binded[ammount_of_keys];
 
+static void append_binding(FILE* autoexec, const char* command, const char* command_name, const char* bindable_input);
+
+static void append_config(FILE* autoexec, const char* config, const char* config_name, const char* value, int value_length);
+
 static long search_inline_parameter(const char* config_file_string, long setting_position);
 
-static long search_setting_parameter(const char* config_file_string, const char* config);
+static long search_setting_and_parameter(const char* config_file_string, const char* config);
 
-static void append_config_to_file(FILE* autoexec, char** config_file_string, long menu, long config);
+static void append_config_to_file(FILE* autoexec, char** config_file_string, cfg_menu_t* cfg_menu, long menu, long config);
+
+static void append_binding(FILE* autoexec, const char* command, const char* command_name, const char* bindable_input)
+{
+	if (autoexec == NULL || command == NULL || command_name == NULL)
+		return;
+
+	int has_bindable_input = bindable_input != NULL;
+
+	fprintf(autoexec, "\n%sbind \"%s\" \"%s\"\t\t\t\t// %s", (has_bindable_input) ? "" : "// ", (has_bindable_input) ? bindable_input : "", command, command_name);
+}
+
+static void append_config(FILE* autoexec, const char* config, const char* config_name, const char* value, int value_length)
+{
+	if (autoexec == NULL || config == NULL || config_name == NULL)
+		return;
+
+	int has_value = value != NULL && value_length > 0;
+
+	fprintf(autoexec, "\n%s%s \"%.*s\"\t\t\t\t// %s", (has_value) ? "" : "// ", config, (has_value) ? value_length : 0, (has_value) ? value : "", config_name);
+}
 
 static long search_inline_parameter(const char* config_file_string, long setting_position)
 {
@@ -66,7 +80,7 @@ static long search_inline_parameter(const char* config_file_string, long setting
 	return (qm_counter == 2) ? parameter_position : PARAMETER_NOT_FOUND;
 }
 
-static long search_setting_parameter(const char* config_file_string, const char* config)
+static long search_setting_and_parameter(const char* config_file_string, const char* config)
 {
 	if (config_file_string == NULL || config == NULL)
 		return INVALID_INPUT;
@@ -81,7 +95,7 @@ static long search_setting_parameter(const char* config_file_string, const char*
 	return search_inline_parameter(config_file_string, setting_position);
 }
 
-static void append_config_to_file(FILE* autoexec, char** config_file_string, long menu, long config)
+static void append_config_to_file(FILE* autoexec, char** config_file_string, cfg_menu_t* cfg_menu, long menu, long config)
 {
 	if(cfg_menu[menu].config[config][0] == '\0')
 		return;
@@ -94,7 +108,7 @@ static void append_config_to_file(FILE* autoexec, char** config_file_string, lon
 
 	for (i = 0, was_found = 0, new_line_start = 0; config_file_string[i] != NULL;)
 	{
-		parameter_position = search_setting_parameter(config_file_string[i] + new_line_start, cfg_menu[menu].config[config]);
+		parameter_position = search_setting_and_parameter(config_file_string[i] + new_line_start, cfg_menu[menu].config[config]);
 		if (parameter_position < 0)
 		{
 			i++;
@@ -110,12 +124,12 @@ static void append_config_to_file(FILE* autoexec, char** config_file_string, lon
 			for (j = 0; j < ammount_of_keys && search_for_quoted_target_string(Keys[j], config_file_string[i] + parameter_position - 1) != 1; j++);
 			if (j >= ammount_of_keys)
 				continue;
-			APPEND_BINDING(autoexec, menu, config, str_length, config_file_string[i] + parameter_position);
+			append_binding(autoexec, cfg_menu[menu].config[config], cfg_menu[menu].config_name[config], Keys[j]);
 			was_found = 1;
 			is_key_binded[j] = 1;
 			continue;
 		}
-		APPEND_CONFIG(autoexec, menu, config, str_length, config_file_string[i] + parameter_position);
+		append_config(autoexec, cfg_menu[menu].config[config], cfg_menu[menu].config_name[config], config_file_string[i] + parameter_position, str_length);
 		was_found = 1;
 	}
 
@@ -123,12 +137,12 @@ static void append_config_to_file(FILE* autoexec, char** config_file_string, lon
 		return;
 
 	if (menu == KEYBOARD_AND_MOUSE && IS_BETWEEN(config, Yaw, Chat_Wheel_3))
-		APPEND_COMMENTED_BINDING(autoexec, menu, config);
+		append_binding(autoexec, cfg_menu[menu].config[config], cfg_menu[menu].config_name[config], NULL);
 	else
-		APPEND_COMMENTED_CONFIG(autoexec, menu, config);
+		append_config(autoexec, cfg_menu[menu].config[config], cfg_menu[menu].config_name[config], NULL, 0);
 }
 
-void write_autoexec(char** config_file_string, FILE* autoexec)
+void write_autoexec(FILE* autoexec, char** config_file_string)
 {
 	if (config_file_string == NULL || config_file_string[0] == NULL || autoexec == NULL)
 		return;
@@ -151,7 +165,7 @@ void write_autoexec(char** config_file_string, FILE* autoexec)
 			{
 				fprintf(autoexec, "%s// %s\n", (menu || config) ? "\n\n\n" : "",cfg_menu[menu].sub_menu_title[sub_menu]);
 			}
-			append_config_to_file(autoexec, config_file_string, menu, config);
+			append_config_to_file(autoexec, config_file_string, cfg_menu, menu, config);
 		}
 	}
 
@@ -161,7 +175,7 @@ void write_autoexec(char** config_file_string, FILE* autoexec)
 	{
 		if (is_key_binded[i])
 			continue;
-		parameter_position = search_setting_parameter(config_file_string[2], Keys[i]);
+		parameter_position = search_setting_and_parameter(config_file_string[2], Keys[i]);
 		if (parameter_position < 0)
 			continue;
 		if (search_for_quoted_target_string("<unbound>", config_file_string[2] + parameter_position - 1) == 1)

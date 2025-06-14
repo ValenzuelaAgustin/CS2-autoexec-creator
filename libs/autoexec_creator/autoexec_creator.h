@@ -2,6 +2,6 @@
 #define AUTOEXEC_CREATOR_H
 #include <stdio.h>
 
-void write_autoexec(char** config_file_string, FILE* autoexec);
+void write_autoexec(FILE* autoexec, char** config_file_string);
 
 #endif

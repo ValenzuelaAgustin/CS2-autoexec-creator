@@ -38,7 +38,7 @@ int main()
 		return 1;
 	}
 
-	write_autoexec(config_file_string, autoexec);
+	write_autoexec(autoexec, config_file_string);
 	fclose(autoexec);
 
 	printf("\n\nautoexec created succesfully, press ENTER to exit:\t");
