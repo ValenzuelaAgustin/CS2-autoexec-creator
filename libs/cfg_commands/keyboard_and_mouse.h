@@ -6,7 +6,7 @@ extern const char* Keyboard_And_Mouse_Settings_Names[];
 extern const char* Keyboard_And_Mouse_Settings_Sub_Menu_Titles[];
 extern int Keyboard_And_Mouse_Sub_Menu_Last_Config[];
 
-#define ammount_of_keys 108
+#define ammount_of_keys 110
 extern const char* Keys[];
 
 enum

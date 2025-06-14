@@ -267,6 +267,8 @@ const char* Keys[ammount_of_keys] =
 	"KP_SLASH", "KP_MULTIPLY", "KP_MINUS", "KP_PLUS", "KP_ENTER", "KP_DECIMAL",
 
 	// Mouse inputs
+	"MOUSE_X",
+	"MOUSE_Y",
 	"MOUSE1",
 	"MOUSE2",
 	"MOUSE3",
