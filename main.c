@@ -41,7 +41,7 @@ int main()
 	write_autoexec(config_file_string, autoexec);
 	fclose(autoexec);
 
-	printf("\n\nPress ENTER to exit:\t");
+	printf("\n\nautoexec created succesfully, press ENTER to exit:\t");
 	getchar();
 
 	return 0;
