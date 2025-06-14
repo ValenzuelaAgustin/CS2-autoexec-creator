@@ -3,7 +3,7 @@
 
 char* config_file_string[4];
 const char cfg_directory[] = "C:\\Program Files (x86)\\Steam\\userdata\\USER_NUMBER\\730\\local\\cfg";
-const char* const file_name[] =
+const char* file_name[] =
 {
 	"cs2_machine_convars.vcfg",
 	"cs2_user_convars_0_slot0.vcfg",
@@ -15,9 +15,10 @@ int main()
 	FILE* autoexec = fopen("autoexec.cfg", "wb");
 	char c;
 
-	printf("\nPress ENTER if main.exe is located in:\t\"%s\"", cfg_directory);
-	printf("\nIf not, Q + ENTER to quit:\t");
-	c = getchar();
+	printf("\nPress ENTER if autoexec-creator.exe is located in: \"%s\"", cfg_directory);
+	printf("\nIf not, press Q to quit and move the program there:\t");
+
+	while ((c = getchar()) != '\n' && TO_UPPER(c) != 'Q');
 	if (TO_UPPER(c) == 'Q')
 		return 0;
 
