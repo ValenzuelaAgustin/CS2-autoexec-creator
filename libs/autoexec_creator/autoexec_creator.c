@@ -8,6 +8,13 @@ enum
 	PARAMETER_NOT_FOUND
 };
 
+enum
+{
+	MACHINE_CONVARS,
+	USER_CONVARS,
+	USER_KEYS
+};
+
 #define IS_BETWEEN(x, min, max) ((x) >= (min) && (x) <= (max))
 
 #define CONFIG_LOADED_TEXT "echo -----------------------------------------------------------------------\necho -----------------------------Config loaded-----------------------------\necho -----------------------------------------------------------------------"
@@ -108,6 +115,12 @@ static void append_config_to_file(FILE* autoexec, char** config_file_string, cfg
 
 	for (i = 0, was_found = 0, new_line_start = 0; config_file_string[i] != NULL;)
 	{
+		if (i == USER_KEYS && menu != KEYBOARD_AND_MOUSE)
+		{
+			i++;
+			continue;
+		}
+
 		parameter_position = search_setting_and_parameter(config_file_string[i] + new_line_start, cfg_menu[menu].config[config]);
 		if (parameter_position < 0)
 		{
@@ -127,10 +140,11 @@ static void append_config_to_file(FILE* autoexec, char** config_file_string, cfg
 			append_binding(autoexec, cfg_menu[menu].config[config], cfg_menu[menu].config_name[config], Keys[j]);
 			was_found = 1;
 			is_key_binded[j] = 1;
-			continue;
+			break;
 		}
 		append_config(autoexec, cfg_menu[menu].config[config], cfg_menu[menu].config_name[config], config_file_string[i] + parameter_position, str_length);
 		was_found = 1;
+		break;
 	}
 
 	if (was_found)
@@ -175,13 +189,13 @@ void write_autoexec(FILE* autoexec, char** config_file_string)
 	{
 		if (is_key_binded[i])
 			continue;
-		parameter_position = search_setting_and_parameter(config_file_string[2], Keys[i]);
+		parameter_position = search_setting_and_parameter(config_file_string[USER_KEYS], Keys[i]);
 		if (parameter_position < 0)
 			continue;
-		if (search_for_quoted_target_string("<unbound>", config_file_string[2] + parameter_position - 1) == 1)
+		if (search_for_quoted_target_string("<unbound>", config_file_string[USER_KEYS] + parameter_position - 1) == 1)
 			continue;
-		for (str_l = 0; config_file_string[2][parameter_position+str_l] != '\"'; str_l++);
-		fprintf(autoexec, "\nbind \"%s\" \"%.*s\"", Keys[i], str_l, config_file_string[2] + parameter_position);
+		for (str_l = 0; config_file_string[USER_KEYS][parameter_position+str_l] != '\"'; str_l++);
+		fprintf(autoexec, "\nbind \"%s\" \"%.*s\"", Keys[i], str_l, config_file_string[USER_KEYS] + parameter_position);
 	}
 
 	fprintf(autoexec, "\n\n%s", CONFIG_LOADED_TEXT);
