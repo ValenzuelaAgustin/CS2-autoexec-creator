@@ -43,7 +43,7 @@ In addition to these, the tool also extracts several commonly used advanced or U
 ### Key Bindings
 
 - The tool reads **all key bindings** found in the configuration file, including those bound to unknown or custom commands. This ensures that personal scripts and nonstandard key mappings are not ignored.
-- However, it has been observed that for some players, **key bindings are not stored in **. In such cases, the user must manually add their key bindings to the generated `autoexec.cfg`.
+- However, it has been observed that for some players, **key bindings are not stored in `cs2_user_keys_0_slot0.vcfg`**. In such cases, the user must manually add their key bindings to the generated `autoexec.cfg`.
 - It is **recommended** to include an `unbindall` command at the top of the key bindings section to avoid conflicts with the game's default bindings. The tool does not include this by default.
 
 ### Workaround for Missing Bindings
@@ -118,6 +118,20 @@ Place `autoexec-creator.exe` in the same folder as the `.vcfg` files (see path a
 ### 2. Move the file
 
 Manually copy `autoexec.cfg` to your CS2 configuration directory (see path above).
+
+### Limitations on Audio Settings
+
+Some audio-related configuration entries in CS2 contain a dollar sign (`$`) followed by a number, such as:
+
+```
+"snd_mapobjective_volume$4"    "0.040201"
+"snd_menumap_volume$4"         "1.000000"
+"snd_menumusic_volume$4"       "0.000000"
+```
+
+These entries are not processed by the tool, because the dollar sign and number are not recognized as part of a standard console variable. As a result, they will appear commented out in the generated `autoexec.cfg`. This behavior is intentional to avoid producing invalid configuration lines.
+
+You may review and manually reintroduce those commands into the `autoexec.cfg` if needed.
 
 ## Notes
 
