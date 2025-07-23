@@ -18,7 +18,7 @@ autoexec-creator.exe: ${MAIN_OBJ} ${AUTOEXEC_OBJ} ${NSTD_STRING_OBJ} ${AUDIO_OBJ
 ${MAIN_OBJ}: main.c libs\autoexec_creator\autoexec_creator.h libs\menu\menu.h libs\nstd_string\nstd_string.h
 	${CC} ${CFLAGS} -c main.c -o ${MAIN_OBJ}
 
-${AUTOEXEC_OBJ}: libs/autoexec_creator/autoexec_creator.c libs/autoexec_creator/autoexec_creator.h libs/cfg_commands/cfg_commands.h libs/nstd_string/nstd_string.h
+${AUTOEXEC_OBJ}: libs/autoexec_creator/autoexec_creator.c libs/autoexec_creator/autoexec_creator.h libs/nstd_string/nstd_string.h libs/cfg_commands/cfg_commands.h libs/cfg_commands/audio.h libs/cfg_commands/game.h libs/cfg_commands/keyboard_and_mouse.h libs/cfg_commands/other_settings.h
 	${CC} ${CFLAGS} -c libs/autoexec_creator/autoexec_creator.c -o ${AUTOEXEC_OBJ}
 
 ${NSTD_STRING_OBJ}: libs/nstd_string/nstd_string.c libs/nstd_string/nstd_string.h
