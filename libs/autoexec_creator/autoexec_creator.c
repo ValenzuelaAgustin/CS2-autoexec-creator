@@ -19,7 +19,7 @@ enum
 
 #define CONFIG_LOADED_TEXT "echo -----------------------------------------------------------------------\necho -----------------------------Config loaded-----------------------------\necho -----------------------------------------------------------------------"
 
-char is_key_binded[ammount_of_keys];
+static char is_key_binded[ammount_of_keys];
 
 static void append_binding(FILE* autoexec, const char* command, const char* command_name, const char* bindable_input);
 

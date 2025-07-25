@@ -55,7 +55,7 @@ static const int change_output_directory_menu_options_ammount = 0;
 static const char** const add_aditional_input_file_menu_options = NULL;
 static const int add_aditional_input_file_menu_options_ammount = 0;
 
-const menu_t menu[] =
+static const menu_t menu[] =
 {
 	{
 		menu_name[main_m],
