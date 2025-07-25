@@ -367,6 +367,6 @@ int add_aditional_input_file_menu()
 	}
 
 	aditional_file_name[i] = '\0';
-	printf("\nFile name stored succesfuly.");
+	printf("File name stored succesfuly.\n");
 	return main_m;
 }
