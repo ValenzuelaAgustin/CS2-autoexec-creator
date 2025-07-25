@@ -8,6 +8,7 @@ enum
 	STRING_NOT_FOUND
 };
 
+#define IS_A_LETTER(c) ( ((c) >= 'a' && (c) <= 'z') || ((c) >= 'A' && (c) <= 'Z') )
 #define TO_LOWER(c) ( ((c) >= 'A' && (c) <= 'Z') ? (c) | (1<<5) : (c) )
 #define TO_UPPER(c) ( ((c) >= 'a' && (c) <= 'z') ? (c) & ~(1<<5) : (c) )
 
@@ -24,7 +25,5 @@ char* copy_file_to_string(const char* file_name);
 long search_for_target_string(const char* target_string, const char* string);
 
 long search_for_quoted_target_string(const char* target_string, const char* string);
-
-// long search_string_in_file(const char* target_string, const char* file_name);
 
 #endif
