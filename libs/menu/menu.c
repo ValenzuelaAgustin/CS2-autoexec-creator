@@ -113,6 +113,7 @@ static char input_file_directory[255];
 
 static void clear_stdin();
 static int selected_option();
+static int standard_change_name_menu(char* const string, const int string_length, const int menu_index);
 
 static void clear_stdin()
 {
@@ -129,6 +130,62 @@ static int selected_option()
 		return -1;
 
 	return c;
+}
+
+static int standard_change_name_menu(char* const string, const int string_length, const int menu_index)
+{
+	if(fgets(string, string_length, stdin) == NULL)
+	{
+		printf("\nThere was an error while trying to read the stdin\n");
+		return main_m;
+	}
+
+	if(TO_UPPER(string[0]) == 'R' && string[1] == '\n')
+	{
+		string[0] = '\0';
+		string[1] = '\0';
+		return main_m;
+	}
+
+	int i;
+	for(i = 0; string[i] && string[i] != '\n'; i++);
+
+	if(string[i] == '\0')
+	{
+		switch(menu_index)
+		{
+		case change_input_directory:
+		case change_output_directory:
+			printf("The directory name is too large (max length = %d)\n", string_length - 2);
+			break;
+
+		case change_output_file_name:
+		case add_aditional_input_file:
+			printf("The file name is too large (max length = %d)\n", string_length - 2);
+			break;
+		}
+		clear_stdin();
+		string[0] = '\0';
+		printf("%s", menu[menu_index].message);
+		return menu_index;
+	}
+
+	string[i] = '\0';
+
+	switch(menu_index)
+	{
+	case change_input_directory:
+	case change_output_directory:
+		printf("The directory name was stored successfully\n");
+		break;
+
+	case change_output_file_name:
+	case add_aditional_input_file:
+		printf("The file name was stored successfully\n");
+		break;
+	}
+
+	return main_m;
 }
 
 void print_menu(int menu_index)
@@ -248,125 +305,20 @@ int create_autoexec_menu()
 
 int change_output_file_name_menu()
 {
-	if(fgets(output_file_name, sizeof(output_file_name), stdin) == NULL)
-	{
-		printf("\nThere was an error while trying to read the stdin\n");
-		return main_m;
-	}
-
-	if(TO_UPPER(output_file_name[0]) == 'R' && output_file_name[1] == '\n')
-	{
-		output_file_name[0] = '\0';
-		output_file_name[1] = '\0';
-		return main_m;
-	}
-
-	int i;
-	for(i = 0; output_file_name[i] && output_file_name[i] != '\n'; i++);
-
-	if(output_file_name[i] == '\0')
-	{
-		printf("The file name is too large (max length = 28)\n");
-		clear_stdin();
-		output_file_name[0] = '\0';
-		printf("%s", menu[change_output_file_name].message);
-		return change_output_file_name;
-	}
-
-	output_file_name[i] = '\0';
-	printf("The file name was stored successfully\n");
-	return main_m;
+	return standard_change_name_menu(output_file_name, sizeof(output_file_name), change_output_file_name);
 }
 
 int change_input_directory_menu()
 {
-	if(fgets(input_file_directory, sizeof(input_file_directory), stdin) == NULL)
-	{
-		printf("\nThere was an error while trying to read the stdin\n");
-		return main_m;
-	}
-
-	if(TO_UPPER(input_file_directory[0]) == 'R' && input_file_directory[1] == '\n')
-	{
-		input_file_directory[0] = '\0';
-		input_file_directory[1] = '\0';
-		return main_m;
-	}
-
-	int i;
-	for(i = 0; input_file_directory[i] && input_file_directory[i] != '\n'; i++);
-
-	if(input_file_directory[i] == '\0')
-	{
-		printf("The directory name is too large (max length = 253)\n");
-		clear_stdin();
-		input_file_directory[0] = '\0';
-		printf("%s", menu[change_input_directory].message);
-		return change_input_directory;
-	}
-
-	input_file_directory[i] = '\0';
-	printf("The directory name was stored successfully\n");
-	return main_m;
+	return standard_change_name_menu(input_file_directory, sizeof(input_file_directory), change_input_directory);
 }
 
 int change_output_directory_menu()
 {
-	if(fgets(output_file_directory, sizeof(output_file_directory), stdin) == NULL)
-	{
-		printf("\nThere was an error while trying to read the stdin\n");
-		return main_m;
-	}
-
-	if(TO_UPPER(output_file_directory[0]) == 'R' && output_file_directory[1] == '\n')
-	{
-		output_file_directory[0] = '\0';
-		output_file_directory[1] = '\0';
-		return main_m;
-	}
-
-	int i;
-	for(i = 0; output_file_directory[i] && output_file_directory[i] != '\n'; i++);
-
-	if(output_file_directory[i] == '\0')
-	{
-		printf("The directory name is too large (max length = 253)\n");
-		clear_stdin();
-		output_file_directory[0] = '\0';
-		printf("%s", menu[change_output_directory].message);
-		return change_output_directory;
-	}
-
-	output_file_directory[i] = '\0';
-	printf("The directory name was stored successfully\n");
-	return main_m;
+	return standard_change_name_menu(output_file_directory, sizeof(output_file_directory), change_output_directory);
 }
 
 int add_aditional_input_file_menu()
 {
-	if(fgets(aditional_file_name, sizeof(aditional_file_name), stdin) == NULL)
-	{
-		printf("\nThere was an error while trying to read the stdin\n");
-		return main_m;
-	}
-
-	if(TO_UPPER(aditional_file_name[0]) == 'R' && aditional_file_name[1] == '\n')
-	{
-		return main_m;
-	}
-
-	int i;
-	for(i = 0; aditional_file_name[i] && aditional_file_name[i] != '\n'; i++);
-
-	if(aditional_file_name[i] == '\0')
-	{
-		printf("The file name is too large (max length = 38)\n");
-		clear_stdin();
-		aditional_file_name[0] = '\0';
-		return add_aditional_input_file;
-	}
-
-	aditional_file_name[i] = '\0';
-	printf("File name stored succesfuly.\n");
-	return main_m;
+	return standard_change_name_menu(aditional_file_name, sizeof(aditional_file_name), add_aditional_input_file);
 }
