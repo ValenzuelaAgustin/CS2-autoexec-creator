@@ -1,10 +1,10 @@
 #ifndef AUDIO_H
 #define AUDIO_H
 
-extern const char* Audio_Settings[];
-extern const char* Audio_Settings_Names[];
-extern const char* Audio_Settings_Sub_Menu_Titles[];
-extern int Audio_Sub_Menu_Last_Config[];
+extern const char* const Audio_Settings[];
+extern const char* const Audio_Settings_Names[];
+extern const char* const Audio_Settings_Sub_Menu_Titles[];
+extern const int Audio_Sub_Menu_Last_Config[];
 
 enum
 {

@@ -1,13 +1,13 @@
 #ifndef KEYBOARD_AND_MOUSE_H
 #define KEYBOARD_AND_MOUSE_H
 
-extern const char* Keyboard_And_Mouse_Settings[];
-extern const char* Keyboard_And_Mouse_Settings_Names[];
-extern const char* Keyboard_And_Mouse_Settings_Sub_Menu_Titles[];
-extern int Keyboard_And_Mouse_Sub_Menu_Last_Config[];
+extern const char* const Keyboard_And_Mouse_Settings[];
+extern const char* const Keyboard_And_Mouse_Settings_Names[];
+extern const char* const Keyboard_And_Mouse_Settings_Sub_Menu_Titles[];
+extern const int Keyboard_And_Mouse_Sub_Menu_Last_Config[];
 
 #define ammount_of_keys 110
-extern const char* Keys[];
+extern const char* const Keys[];
 
 enum
 {

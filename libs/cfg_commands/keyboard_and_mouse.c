@@ -1,6 +1,6 @@
 #include "keyboard_and_mouse.h"
 
-const char* Keyboard_And_Mouse_Settings[] =
+const char* const Keyboard_And_Mouse_Settings[] =
 {
 	// Keyboard & Mouse Settings
 	"mouse_inverty",
@@ -105,7 +105,7 @@ const char* Keyboard_And_Mouse_Settings[] =
 	"cl_radial_radio_tab_2_text_8"
 };
 
-const char* Keyboard_And_Mouse_Settings_Names[] =
+const char* const Keyboard_And_Mouse_Settings_Names[] =
 {
 	// Keyboard & Mouse Settings
 	"Reverse Mouse",
@@ -210,7 +210,7 @@ const char* Keyboard_And_Mouse_Settings_Names[] =
 	"Chat Wheel 3 Text 8"
 };
 
-const char* Keyboard_And_Mouse_Settings_Sub_Menu_Titles[] =
+const char* const Keyboard_And_Mouse_Settings_Sub_Menu_Titles[] =
 {
 	"Keyboard & Mouse Settings",
 	"Movement Keys",
@@ -221,7 +221,7 @@ const char* Keyboard_And_Mouse_Settings_Sub_Menu_Titles[] =
 	"Chat Wheel phrases"
 };
 
-int Keyboard_And_Mouse_Sub_Menu_Last_Config[] =
+const int Keyboard_And_Mouse_Sub_Menu_Last_Config[] =
 {
 	Pitch,
 	Jump,
@@ -233,7 +233,7 @@ int Keyboard_And_Mouse_Sub_Menu_Last_Config[] =
 	-1
 };
 
-const char* Keys[ammount_of_keys] =
+const char* const Keys[ammount_of_keys] =
 {
 	// Letters
 	"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",

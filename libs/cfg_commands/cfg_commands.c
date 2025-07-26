@@ -1,6 +1,6 @@
 #include "cfg_commands.h"
 
-cfg_menu_t cfg_menu[] =
+const cfg_menu_t cfg_menu[] =
 {
 	{
 		Audio_Settings_Sub_Menu_Titles,
@@ -28,4 +28,4 @@ cfg_menu_t cfg_menu[] =
 	}
 };
 
-int menu_ammount = sizeof(cfg_menu) / sizeof(cfg_menu[0]);
+const int menu_ammount = sizeof(cfg_menu) / sizeof(cfg_menu[0]);

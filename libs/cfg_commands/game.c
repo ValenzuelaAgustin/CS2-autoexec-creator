@@ -1,6 +1,6 @@
 #include "game.h"
 
-const char* Game_Settings[] =
+const char* const Game_Settings[] =
 {
 	// Game
 	"con_enable",
@@ -115,7 +115,7 @@ const char* Game_Settings[] =
 	"cl_hud_telemetry_net_detailed"
 };
 
-const char* Game_Settings_Names[] =
+const char* const Game_Settings_Names[] =
 {
 	// Game
 	"Launched With Developer Console",
@@ -230,7 +230,7 @@ const char* Game_Settings_Names[] =
 	"Use the detailed network quality display"
 };
 
-const char* Game_Settings_Sub_Menu_Titles[] =
+const char* const Game_Settings_Sub_Menu_Titles[] =
 {
 	"Game",
 	"Hud",
@@ -245,7 +245,7 @@ const char* Game_Settings_Sub_Menu_Titles[] =
 	"Telemetry"
 };
 
-int Game_Sub_Menu_Last_Config[] =
+const int Game_Sub_Menu_Last_Config[] =
 {
 	Install_Counter_Strike_Workshop_Tools,
 	Glow_Weapon_with_Rarity_Color,

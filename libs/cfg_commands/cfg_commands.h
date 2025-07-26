@@ -14,8 +14,8 @@ typedef struct
 	const char** config;
 } cfg_menu_t;
 
-extern int menu_ammount;
-extern cfg_menu_t cfg_menu[];
+extern const int menu_ammount;
+extern const cfg_menu_t cfg_menu[];
 
 enum
 {

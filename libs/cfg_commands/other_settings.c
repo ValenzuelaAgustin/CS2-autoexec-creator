@@ -1,6 +1,6 @@
 #include "other_settings.h"
 
-const char* Other_Settings[] =
+const char* const Other_Settings[] =
 {
 	"viewmodel_fov",
 	"viewmodel_offset_x",
@@ -15,7 +15,7 @@ const char* Other_Settings[] =
 	"cl_fixedcrosshairgap"
 };
 
-const char* Other_Settings_Names[] =
+const char* const Other_Settings_Names[] =
 {
 	"Viewmodel field of view",
 	"Viewmodel offset x",
@@ -30,12 +30,12 @@ const char* Other_Settings_Names[] =
 	"Fixed crosshair gap"
 };
 
-const char* Other_Settings_Sub_Menu_Titles[] =
+const char* const Other_Settings_Sub_Menu_Titles[] =
 {
 	"Other Settings"
 };
 
-int Other_Settings_Sub_Menu_Last_Config[] =
+const int Other_Settings_Sub_Menu_Last_Config[] =
 {
 	10,
 	-1

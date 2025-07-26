@@ -1,6 +1,6 @@
 #include "audio.h"
 
-const char* Audio_Settings[] =
+const char* const Audio_Settings[] =
 {
 	// Audio
 	"volume",
@@ -37,7 +37,7 @@ const char* Audio_Settings[] =
 	""					// Arms_Race_EQ ( TODO: Check ) snd_eq_arms_race
 };
 
-const char* Audio_Settings_Names[] =
+const char* const Audio_Settings_Names[] =
 {
 	// Audio
 	"Master Volume",
@@ -74,7 +74,7 @@ const char* Audio_Settings_Names[] =
 	"Arms Race EQ"
 };
 
-const char* Audio_Settings_Sub_Menu_Titles[] =
+const char* const Audio_Settings_Sub_Menu_Titles[] =
 {
 	"Audio",
 	"Voice",
@@ -82,7 +82,7 @@ const char* Audio_Settings_Sub_Menu_Titles[] =
 	"Game Mode EQ"
 };
 
-int Audio_Sub_Menu_Last_Config[] =
+const int Audio_Sub_Menu_Last_Config[] =
 {
 	Play_Audio_When_Game_In_Background,
 	Microphone_Trigger_Threshold,
