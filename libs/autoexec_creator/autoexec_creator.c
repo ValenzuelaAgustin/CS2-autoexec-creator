@@ -25,7 +25,7 @@ static void append_binding(FILE* autoexec, const char* command, const char* comm
 
 static void append_config(FILE* autoexec, const char* config, const char* config_name, const char* value, int value_length);
 
-static long search_inline_parameter(const char* config_file_string, long setting_position);
+static long search_inline_parameter(const char* config_file_string, long setting_position, long setting_length);
 
 static long search_setting_and_parameter(const char* config_file_string, const char* config);
 
@@ -51,7 +51,7 @@ static void append_config(FILE* autoexec, const char* config, const char* config
 	fprintf(autoexec, "\n%s%s \"%.*s\"\t\t\t\t// %s", (has_value) ? "" : "// ", config, (has_value) ? value_length : 0, (has_value) ? value : "", config_name);
 }
 
-static long search_inline_parameter(const char* config_file_string, long setting_position)
+static long search_inline_parameter(const char* config_file_string, long setting_position, long setting_length)
 {
 	if ( config_file_string == NULL || setting_position < 0)
 		return INVALID_INPUT;
@@ -73,7 +73,8 @@ static long search_inline_parameter(const char* config_file_string, long setting
 	if (qm_counter == 2)
 		return parameter_position;
 
-	for (i = setting_position; config_file_string[i++] != '\"';);
+	for (i = setting_position + setting_length; config_file_string[i] != '\"' && config_file_string[i] != ' ' && config_file_string[i] != '\t'; i++);
+	i++;
 
 	for (qm_counter = 0; config_file_string[i] && config_file_string[i] != '\n' && qm_counter < 2; i++)
 	{
@@ -93,13 +94,40 @@ static long search_setting_and_parameter(const char* config_file_string, const c
 		return INVALID_INPUT;
 
 	long setting_position;
+	long setting_length = strlength(config);
+	long prev_char_before_setting;
+	long next_char_after_setting;
+	long starting_pos;
+	int is_valid;
 
-	setting_position = search_for_quoted_target_string(config, config_file_string);
+	//setting_position = search_for_quoted_target_string(config, config_file_string);
+	for(is_valid = 0, setting_position = 0, starting_pos = 0; setting_position >= 0 && !is_valid;)
+	{
+		setting_position = starting_pos + search_for_target_string(config, config_file_string + starting_pos);
+		starting_pos = setting_position + 1;
+		if(setting_position < 0)
+			continue;
+		prev_char_before_setting = setting_position - 1;
+		next_char_after_setting = setting_position + setting_length;
+		if(config_file_string[next_char_after_setting] == '\n' || config_file_string[next_char_after_setting] == '\t' ||
+		   config_file_string[next_char_after_setting] == '\"' || config_file_string[next_char_after_setting] == ' '  || config_file_string[next_char_after_setting] == '$')
+		{
+			is_valid = 1;
+		}
+		if(prev_char_before_setting < 1)
+			continue;
+		if(config_file_string[prev_char_before_setting] != '\n' && config_file_string[prev_char_before_setting] != '\t' &&
+		   config_file_string[prev_char_before_setting] != '\"' && config_file_string[prev_char_before_setting] != ' ')
+		{
+			is_valid = 0;
+		}
+	}
+
 	if (setting_position < 0)
 	{
 		return SETTING_NOT_FOUND;
 	}
-	return search_inline_parameter(config_file_string, setting_position);
+	return search_inline_parameter(config_file_string, setting_position, setting_length);
 }
 
 static void append_config_to_file(FILE* autoexec, char** config_file_string, cfg_menu_t* cfg_menu, long menu, long config)
