@@ -29,7 +29,7 @@ static long search_inline_parameter(const char* config_file_string, long setting
 
 static long search_setting_and_parameter(const char* config_file_string, const char* config);
 
-static void append_config_to_file(FILE* autoexec, char** config_file_string, cfg_menu_t* cfg_menu, long menu, long config);
+static void append_config_to_file(FILE* autoexec, char** config_file_string, long menu, long config);
 
 static void append_binding(FILE* autoexec, const char* command, const char* command_name, const char* bindable_input)
 {
@@ -130,7 +130,7 @@ static long search_setting_and_parameter(const char* config_file_string, const c
 	return search_inline_parameter(config_file_string, setting_position, setting_length);
 }
 
-static void append_config_to_file(FILE* autoexec, char** config_file_string, cfg_menu_t* cfg_menu, long menu, long config)
+static void append_config_to_file(FILE* autoexec, char** config_file_string, long menu, long config)
 {
 	if(cfg_menu[menu].config[config][0] == '\0')
 		return;
@@ -207,7 +207,7 @@ void write_autoexec(FILE* autoexec, char** config_file_string)
 			{
 				fprintf(autoexec, "%s// %s\n", (menu || config) ? "\n\n\n" : "",cfg_menu[menu].sub_menu_title[sub_menu]);
 			}
-			append_config_to_file(autoexec, config_file_string, cfg_menu, menu, config);
+			append_config_to_file(autoexec, config_file_string, menu, config);
 		}
 	}
 
