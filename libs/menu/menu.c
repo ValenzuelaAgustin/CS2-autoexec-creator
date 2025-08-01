@@ -136,18 +136,25 @@ static int selected_option()
 
 static int standard_change_name_menu(char* const string, const int string_length, const int menu_index)
 {
-	if(fgets(string, string_length, stdin) == NULL)
+	char buffer[3];
+
+	if(fgets(buffer, sizeof(buffer), stdin) == NULL)
 	{
 		printf("\nThere was an error while trying to read the stdin\n");
 		return main_m;
 	}
-
-	if(TO_UPPER(string[0]) == 'R' && string[1] == '\n')
+	if(TO_UPPER(buffer[0]) == 'R' && buffer[1] == '\n')
 	{
-		string[0] = '\0';
-		string[1] = '\0';
 		return main_m;
 	}
+
+	if(fgets(string + 2, string_length - 2, stdin) == NULL)
+	{
+		printf("\nThere was an error while trying to read the stdin\n");
+		return main_m;
+	}
+	string[0] = buffer[0];
+	string[1] = buffer[1];
 
 	int i;
 	for(i = 0; string[i] && string[i] != '\n'; i++);
