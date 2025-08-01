@@ -12,7 +12,8 @@ enum
 {
 	MACHINE_CONVARS,
 	USER_CONVARS,
-	USER_KEYS
+	USER_KEYS,
+	ADDITIONAL_INPUT_FILE
 };
 
 #define IS_BETWEEN(x, min, max) ((x) >= (min) && (x) <= (max))
@@ -189,10 +190,10 @@ void write_autoexec(FILE* autoexec, char** config_file_string)
 	if (config_file_string == NULL || config_file_string[0] == NULL || autoexec == NULL)
 		return;
 
-	long menu, config;
-	int sub_menu;
-
 	long parameter_position;
+	long menu, config;
+	int file_index;
+	int sub_menu;
 	int str_l;
 	int i;
 
@@ -213,17 +214,22 @@ void write_autoexec(FILE* autoexec, char** config_file_string)
 
 	fprintf(autoexec, "\n\n\n// Other Bindings\n");
 
-	for (i = 0; i < ammount_of_keys; i++)
+	for (i = 0, file_index = USER_KEYS; i < ammount_of_keys; i++, file_index = USER_KEYS)
 	{
 		if (is_key_binded[i])
 			continue;
-		parameter_position = search_setting_and_parameter(config_file_string[USER_KEYS], Keys[i]);
+		parameter_position = search_setting_and_parameter(config_file_string[file_index], Keys[i]);
+		if (parameter_position < 0)
+		{
+			file_index = ADDITIONAL_INPUT_FILE;
+			parameter_position = search_setting_and_parameter(config_file_string[file_index], Keys[i]);
+		}
 		if (parameter_position < 0)
 			continue;
-		if (search_for_quoted_target_string("<unbound>", config_file_string[USER_KEYS] + parameter_position - 1) == 1)
+		if (search_for_quoted_target_string("<unbound>", config_file_string[file_index] + parameter_position - 1) == 1)
 			continue;
-		for (str_l = 0; config_file_string[USER_KEYS][parameter_position+str_l] != '\"'; str_l++);
-		fprintf(autoexec, "\nbind \"%s\" \"%.*s\"", Keys[i], str_l, config_file_string[USER_KEYS] + parameter_position);
+		for (str_l = 0; config_file_string[file_index][parameter_position+str_l] != '\"'; str_l++);
+		fprintf(autoexec, "\nbind \"%s\" \"%.*s\"", Keys[i], str_l, config_file_string[file_index] + parameter_position);
 	}
 
 	fprintf(autoexec, "\n\n%s", CONFIG_LOADED_TEXT);
