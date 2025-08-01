@@ -32,6 +32,8 @@ static long search_setting_and_parameter(const char* config_file_string, const c
 
 static void append_config_to_file(FILE* autoexec, char** config_file_string, long menu, long config);
 
+static void append_other_settings(FILE* autoexec, char** config_file_string);
+
 static void append_binding(FILE* autoexec, const char* command, const char* command_name, const char* bindable_input)
 {
 	if (autoexec == NULL || command == NULL || command_name == NULL)
@@ -54,7 +56,7 @@ static void append_config(FILE* autoexec, const char* config, const char* config
 
 static long search_inline_parameter(const char* config_file_string, long setting_position, long setting_length)
 {
-	if ( config_file_string == NULL || setting_position < 0)
+	if ( config_file_string == NULL || setting_position < 0 || setting_length < 1)
 		return INVALID_INPUT;
 
 	long i, parameter_position;
@@ -185,32 +187,12 @@ static void append_config_to_file(FILE* autoexec, char** config_file_string, lon
 		append_config(autoexec, cfg_menu[menu].config[config], cfg_menu[menu].config_name[config], NULL, 0);
 }
 
-void write_autoexec(FILE* autoexec, char** config_file_string)
+static void append_other_settings(FILE* autoexec, char** config_file_string)
 {
-	if (config_file_string == NULL || config_file_string[0] == NULL || autoexec == NULL)
-		return;
-
 	long parameter_position;
-	long menu, config;
 	int file_index;
-	int sub_menu;
 	int str_l;
 	int i;
-
-	for (i = 0; i < ammount_of_keys; i++)
-		is_key_binded[i] = 0;
-
-	for (menu = 0; menu < menu_ammount; menu++)
-	{
-		for (config = 0, sub_menu = 0; cfg_menu[menu].sub_menu_last_config[sub_menu] > -1; config++, sub_menu += config > cfg_menu[menu].sub_menu_last_config[sub_menu])
-		{
-			if (!config || config == cfg_menu[menu].sub_menu_last_config[sub_menu - (sub_menu > 0)] + 1)
-			{
-				fprintf(autoexec, "%s// %s\n", (menu || config) ? "\n\n\n" : "",cfg_menu[menu].sub_menu_title[sub_menu]);
-			}
-			append_config_to_file(autoexec, config_file_string, menu, config);
-		}
-	}
 
 	fprintf(autoexec, "\n\n\n// Other Bindings\n");
 
@@ -231,6 +213,32 @@ void write_autoexec(FILE* autoexec, char** config_file_string)
 		for (str_l = 0; config_file_string[file_index][parameter_position+str_l] != '\"'; str_l++);
 		fprintf(autoexec, "\nbind \"%s\" \"%.*s\"", Keys[i], str_l, config_file_string[file_index] + parameter_position);
 	}
+}
 
+void write_autoexec(FILE* autoexec, char** config_file_string)
+{
+	if (config_file_string == NULL || config_file_string[0] == NULL || autoexec == NULL)
+		return;
+
+	long menu, config;
+	int sub_menu;
+	int i;
+
+	for (i = 0; i < ammount_of_keys; i++)
+		is_key_binded[i] = 0;
+
+	for (menu = 0; menu < menu_ammount; menu++)
+	{
+		for (config = 0, sub_menu = 0; cfg_menu[menu].sub_menu_last_config[sub_menu] > -1; config++, sub_menu += config > cfg_menu[menu].sub_menu_last_config[sub_menu])
+		{
+			if (!config || config == cfg_menu[menu].sub_menu_last_config[sub_menu - (sub_menu > 0)] + 1)
+			{
+				fprintf(autoexec, "%s// %s\n", (menu || config) ? "\n\n\n" : "",cfg_menu[menu].sub_menu_title[sub_menu]);
+			}
+			append_config_to_file(autoexec, config_file_string, menu, config);
+		}
+	}
+
+	append_other_settings(autoexec, config_file_string);
 	fprintf(autoexec, "\n\n%s", CONFIG_LOADED_TEXT);
 }
