@@ -57,7 +57,7 @@ long search_for_target_string(const char* target_string, const char* string)
 	{
 		for (; string[i] && string[i] != target_string[0]; i++);
 		if (string[i] == '\0')
-			return STRING_NOT_FOUND;
+			break;
 		start = i;
 		for (j = 0; string[i] && target_string[j] && string[i] == target_string[j]; i++, j++);
 	}
@@ -76,7 +76,7 @@ long search_for_quoted_target_string(const char* target_string, const char* stri
 	{
 		for (; string[i] && string[i] != '\"'; i++);
 		if (string[i] == '\0')
-			return STRING_NOT_FOUND;
+			break;
 		for (j = 0, i++; string[i] && target_string[j] && string[i] == target_string[j]; i++, j++);
 	}
 
