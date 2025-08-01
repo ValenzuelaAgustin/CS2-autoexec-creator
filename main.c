@@ -30,8 +30,8 @@ int main()
 		case change_output_directory:
 			next_menu = change_output_directory_menu();
 			break;
-		case add_aditional_input_file:
-			next_menu = add_aditional_input_file_menu();
+		case add_additional_input_file:
+			next_menu = add_additional_input_file_menu();
 			break;
 		}
 	}

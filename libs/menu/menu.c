@@ -25,7 +25,7 @@ static const char* const menu_name[] =
 	"Change output file name",
 	"Change input directory",
 	"Change output directory",
-	"Add an aditional input file"
+	"Add an additional input file"
 };
 
 static const char* const main_menu_options[] =
@@ -34,7 +34,7 @@ static const char* const main_menu_options[] =
 	menu_name[change_output_file_name],
 	menu_name[change_input_directory],
 	menu_name[change_output_directory],
-	menu_name[add_aditional_input_file],
+	menu_name[add_additional_input_file],
 	"Quit program"
 };
 static const int main_menu_options_ammount = sizeof(main_menu_options) / sizeof(main_menu_options[0]);
@@ -52,8 +52,8 @@ static const char** const change_input_directory_menu_options = NULL;
 static const int change_input_directory_menu_options_ammount = 0;
 static const char** const change_output_directory_menu_options = NULL;
 static const int change_output_directory_menu_options_ammount = 0;
-static const char** const add_aditional_input_file_menu_options = NULL;
-static const int add_aditional_input_file_menu_options_ammount = 0;
+static const char** const add_additional_input_file_menu_options = NULL;
+static const int add_additional_input_file_menu_options_ammount = 0;
 
 static const menu_t menu[] =
 {
@@ -88,22 +88,22 @@ static const menu_t menu[] =
 		change_output_directory_menu_options_ammount
 	},
 	{
-		menu_name[add_aditional_input_file],
+		menu_name[add_additional_input_file],
 		default_select_file_name_message,
-		add_aditional_input_file_menu_options,
-		add_aditional_input_file_menu_options_ammount
+		add_additional_input_file_menu_options,
+		add_additional_input_file_menu_options_ammount
 	}
 };
 
 static const char default_output_file_name[] = "autoexec.cfg";
 
-static char aditional_file_name[40] = "";
+static char additional_file_name[40] = "";
 static const char* const file_name[] =
 {
 	"cs2_machine_convars.vcfg",
 	"cs2_user_convars_0_slot0.vcfg",
 	"cs2_user_keys_0_slot0.vcfg",	// THIS HAS TO BE IN THE THIRD POSITION OF THIS STRING
-	aditional_file_name
+	additional_file_name
 };
 
 static char* config_file_string[5];
@@ -162,7 +162,7 @@ static int standard_change_name_menu(char* const string, const int string_length
 			break;
 
 		case change_output_file_name:
-		case add_aditional_input_file:
+		case add_additional_input_file:
 			printf("The file name is too large (max length = %d)\n", string_length - 2);
 			break;
 		}
@@ -182,7 +182,7 @@ static int standard_change_name_menu(char* const string, const int string_length
 		break;
 
 	case change_output_file_name:
-	case add_aditional_input_file:
+	case add_additional_input_file:
 		printf("The file name was stored successfully\n");
 		break;
 	}
@@ -343,7 +343,7 @@ int change_output_directory_menu()
 	return standard_change_name_menu(output_file_directory, sizeof(output_file_directory), change_output_directory);
 }
 
-int add_aditional_input_file_menu()
+int add_additional_input_file_menu()
 {
-	return standard_change_name_menu(aditional_file_name, sizeof(aditional_file_name), add_aditional_input_file);
+	return standard_change_name_menu(additional_file_name, sizeof(additional_file_name), add_additional_input_file);
 }
