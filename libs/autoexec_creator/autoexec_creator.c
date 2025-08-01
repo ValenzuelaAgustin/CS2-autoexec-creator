@@ -32,7 +32,7 @@ static long search_setting_and_parameter(const char* config_file_string, const c
 
 static void append_config_to_file(FILE* autoexec, char** config_file_string, long menu, long config);
 
-static void append_other_settings(FILE* autoexec, char** config_file_string);
+static void append_other_bindings(FILE* autoexec, char** config_file_string);
 
 static void append_binding(FILE* autoexec, const char* command, const char* command_name, const char* bindable_input)
 {
@@ -187,7 +187,7 @@ static void append_config_to_file(FILE* autoexec, char** config_file_string, lon
 		append_config(autoexec, cfg_menu[menu].config[config], cfg_menu[menu].config_name[config], NULL, 0);
 }
 
-static void append_other_settings(FILE* autoexec, char** config_file_string)
+static void append_other_bindings(FILE* autoexec, char** config_file_string)
 {
 	long parameter_position;
 	int file_index;
@@ -239,6 +239,6 @@ void write_autoexec(FILE* autoexec, char** config_file_string)
 		}
 	}
 
-	append_other_settings(autoexec, config_file_string);
+	append_other_bindings(autoexec, config_file_string);
 	fprintf(autoexec, "\n\n%s", CONFIG_LOADED_TEXT);
 }
