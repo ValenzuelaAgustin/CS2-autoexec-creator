@@ -114,6 +114,8 @@ static char input_file_directory[255];
 static void clear_stdin();
 static int selected_option();
 static int standard_change_name_menu(char* const string, const int string_length, const int menu_index);
+static int load_input_files();
+static int create_autoexec_file(FILE** autoexec);
 
 static void clear_stdin()
 {
@@ -188,6 +190,70 @@ static int standard_change_name_menu(char* const string, const int string_length
 	return main_m;
 }
 
+static int load_input_files()
+{
+	long i;
+
+	if(!SetCurrentDirectory(input_file_directory))
+	{
+		printf("\nBefore creating an autoexec file, you must first specify a valid input directory.");
+		return 0;
+	}
+
+	for(i = 0; i < 4; i++)
+	{
+		free(config_file_string[i]);
+ 		config_file_string[i] = copy_file_to_string(file_name[i]);
+	}
+ 	config_file_string[4] = NULL;
+
+	if (config_file_string[0] == NULL || config_file_string[1] == NULL || config_file_string[2] == NULL)
+	{
+		printf("\nOne of the following files could not be open:");
+		for(i = 0; i < 3; i++)
+		{
+			free(config_file_string[i]);
+			config_file_string[i] = NULL;
+			printf("\n\t%s", file_name[i]);
+		}
+		free(config_file_string[3]);
+		config_file_string[3] = NULL;
+		return 0;
+	}
+
+	return 1;
+}
+
+static int create_autoexec_file(FILE** autoexec)
+{
+	int default_name = 0;
+
+	if(!SetCurrentDirectory(output_file_directory))
+	{
+		printf("\nBefore creating an autoexec file, you must first specify a valid output directory.");
+		return 0;
+	}
+	*autoexec = fopen(output_file_name, "wb");
+
+	if(*autoexec == NULL)
+	{
+		if(output_file_name[0] != '\0')
+		{
+			printf("\nThe program was unable to create the autoexec file with the custom name.\nTrying with \"%s\" instead...", default_output_file_name);
+		}
+		*autoexec = fopen(default_output_file_name, "wb");
+		default_name = 1;
+	}
+	if(*autoexec == NULL)
+	{
+		printf("\nThe program was unable to create the autoexec file.");
+		return 0;
+	}
+
+	printf("\nAutoexec file \"%s\" created in:\n\t%s", (default_name) ? default_output_file_name : output_file_name, output_file_directory);
+	return 1;
+}
+
 void print_menu(int menu_index)
 {
 	if(menu_index < 0 || menu_index >= (sizeof(menu) / sizeof(menu[0])))
@@ -219,7 +285,6 @@ int main_menu()
 
 int create_autoexec_menu()
 {
-	int default_name = 0;
 	int i;
 	int option = selected_option();
 	FILE* autoexec = NULL;
@@ -233,60 +298,20 @@ int create_autoexec_menu()
 	if(!option)
 		return main_m;
 
-	if(!SetCurrentDirectory(output_file_directory))
+	if(!load_input_files())
 	{
-		printf("\nBefore creating an autoexec file, you must first specify a valid output directory.");
 		printf("\nReturning to the main menu...\n");
 		return main_m;
 	}
 
-	autoexec = fopen(output_file_name, "wb");
-
-	if(autoexec == NULL)
+	if(!create_autoexec_file(&autoexec))
 	{
-		if(output_file_name[0] != '\0')
-		{
-			printf("\nThe program was unable to create the autoexec file with the custom name.\nTrying with \"%s\" instead...", default_output_file_name);
-		}
-		autoexec = fopen(default_output_file_name, "wb");
-		default_name = 1;
-	}
-	if(autoexec == NULL)
-	{
-		printf("\nThe program was unable to create the autoexec file.");
-		printf("\nReturning to the main menu...\n");
-		return main_m;
-	}
-	printf("\nAutoexec file \"%s\" created in:\n\t%s", (default_name) ? default_output_file_name : output_file_name, output_file_directory);
-
-	if(!SetCurrentDirectory(input_file_directory))
-	{
-		printf("\nBefore creating an autoexec file, you must first specify a valid input directory.");
-		printf("\nReturning to the main menu...\n");
-		fclose(autoexec);
-		return main_m;
-	}
-
-	for(i = 0; i < 4; i++)
-	{
-		free(config_file_string[i]);
- 		config_file_string[i] = copy_file_to_string(file_name[i]);
-	}
- 	config_file_string[4] = NULL;
-
-	if (config_file_string[0] == NULL || config_file_string[1] == NULL || config_file_string[2] == NULL)
-	{
-		printf("\nOne of the following files could not be open:");
-		for(i = 0; i < 3; i++)
+		for(i = 0; i < 4; i++)
 		{
 			free(config_file_string[i]);
 			config_file_string[i] = NULL;
-			printf("\n\t%s", file_name[i]);
 		}
 		printf("\nReturning to the main menu...\n");
-		free(config_file_string[3]);
-		config_file_string[3] = NULL;
-		fclose(autoexec);
 		return main_m;
 	}
 
