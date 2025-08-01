@@ -9,7 +9,7 @@ typedef struct
 {
 	const char* name;
 	const char* message;
-	const char** options;
+	const char* const * options;
 	int options_ammount;
 } menu_t;
 
