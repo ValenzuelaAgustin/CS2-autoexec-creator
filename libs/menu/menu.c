@@ -292,7 +292,7 @@ void print_menu(int menu_index)
 		return;
 
 	unsigned int i;
-	printf("\n%s", menu[menu_index].name);
+	printf("\n# %s:", menu[menu_index].name);
 	for (i = 0; i < menu[menu_index].options_ammount; i++)
 	{
 		printf("\n[%d] %s", i, menu[menu_index].options[i]);
