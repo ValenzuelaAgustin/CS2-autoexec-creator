@@ -28,7 +28,7 @@ static void append_config(FILE* autoexec, const char* config, const char* config
 
 static long search_inline_parameter(const char* config_file_string, long setting_position, long setting_length);
 
-static long search_setting_and_parameter(const char* config_file_string, const char* config);
+static long search_setting_and_parameter(const char* config_file_string, const char* config, int setting_must_be_quoted);
 
 static void append_config_to_file(FILE* autoexec, char** config_file_string, long menu, long config);
 
@@ -91,12 +91,13 @@ static long search_inline_parameter(const char* config_file_string, long setting
 	return (qm_counter == 2) ? parameter_position : PARAMETER_NOT_FOUND;
 }
 
-static long search_setting_and_parameter(const char* config_file_string, const char* config)
+static long search_setting_and_parameter(const char* config_file_string, const char* config, int setting_must_be_quoted)
 {
 	if (config_file_string == NULL || config == NULL)
 		return INVALID_INPUT;
 
 	long setting_position;
+	long parameter_position;
 	long setting_length = strlength(config);
 	long prev_char_before_setting;
 	long next_char_after_setting;
@@ -104,33 +105,54 @@ static long search_setting_and_parameter(const char* config_file_string, const c
 	int is_valid;
 
 	//setting_position = search_for_quoted_target_string(config, config_file_string);
-	for(is_valid = 0, setting_position = 0, starting_pos = 0; setting_position >= 0 && !is_valid;)
+	if(setting_must_be_quoted)
 	{
-		setting_position = starting_pos + search_for_target_string(config, config_file_string + starting_pos);
-		starting_pos = setting_position + 1;
-		if(setting_position < 0)
-			continue;
-		prev_char_before_setting = setting_position - 1;
-		next_char_after_setting = setting_position + setting_length;
-		if(config_file_string[next_char_after_setting] == '\n' || config_file_string[next_char_after_setting] == '\t' ||
-		   config_file_string[next_char_after_setting] == '\"' || config_file_string[next_char_after_setting] == ' '  || config_file_string[next_char_after_setting] == '$')
+		for(setting_position = 0, starting_pos = 0, parameter_position = PARAMETER_NOT_FOUND; setting_position >= 0 && parameter_position == PARAMETER_NOT_FOUND;)
 		{
-			is_valid = 1;
+			setting_position = starting_pos + search_for_quoted_target_string(config, config_file_string + starting_pos);
+			starting_pos = setting_position + 1;
+			if(setting_position < 0)
+				break;
+			parameter_position = search_inline_parameter(config_file_string, setting_position, setting_length);
 		}
-		if(prev_char_before_setting < 1)
-			continue;
-		if(config_file_string[prev_char_before_setting] != '\n' && config_file_string[prev_char_before_setting] != '\t' &&
-		   config_file_string[prev_char_before_setting] != '\"' && config_file_string[prev_char_before_setting] != ' ')
+	}
+	else
+	{
+		for(is_valid = 0, setting_position = 0, starting_pos = 0; setting_position >= 0 && !is_valid;)
 		{
-			is_valid = 0;
+			setting_position = starting_pos + search_for_target_string(config, config_file_string + starting_pos);
+			starting_pos = setting_position + 1;
+			if(setting_position < 0)
+				break;
+			prev_char_before_setting = setting_position - 1;
+			next_char_after_setting = setting_position + setting_length;
+			if(config_file_string[next_char_after_setting] == '\n' || config_file_string[next_char_after_setting] == '\t' ||
+			config_file_string[next_char_after_setting] == '\"' || config_file_string[next_char_after_setting] == ' '  || config_file_string[next_char_after_setting] == '$')
+			{
+				is_valid = 1;
+			}
+			if(prev_char_before_setting >= 0 &&
+			config_file_string[prev_char_before_setting] != '\n' && config_file_string[prev_char_before_setting] != '\t' &&
+			config_file_string[prev_char_before_setting] != '\"' && config_file_string[prev_char_before_setting] != ' ')
+			{
+				is_valid = 0;
+			}
+			if(is_valid)
+			{
+				parameter_position = search_inline_parameter(config_file_string, setting_position, setting_length);
+			}
+			if(parameter_position < 0)
+			{
+				is_valid = 0;
+			}
 		}
 	}
 
-	if (setting_position < 0)
-	{
+	if(setting_position < 0)
 		return SETTING_NOT_FOUND;
-	}
-	return search_inline_parameter(config_file_string, setting_position, setting_length);
+	if(parameter_position < 0)
+		return PARAMETER_NOT_FOUND;
+	return parameter_position;
 }
 
 static void append_config_to_file(FILE* autoexec, char** config_file_string, long menu, long config)
@@ -152,7 +174,7 @@ static void append_config_to_file(FILE* autoexec, char** config_file_string, lon
 			continue;
 		}
 
-		parameter_position = search_setting_and_parameter(config_file_string[i] + new_line_start, cfg_menu[menu].config[config]);
+		parameter_position = search_setting_and_parameter(config_file_string[i] + new_line_start, cfg_menu[menu].config[config], 0);
 		if (parameter_position < 0)
 		{
 			i++;
@@ -200,11 +222,11 @@ static void append_other_bindings(FILE* autoexec, char** config_file_string)
 	{
 		if (is_key_binded[i])
 			continue;
-		parameter_position = search_setting_and_parameter(config_file_string[file_index], Keys[i]);
+		parameter_position = search_setting_and_parameter(config_file_string[file_index], Keys[i], 1);
 		if (parameter_position < 0)
 		{
 			file_index = ADDITIONAL_INPUT_FILE;
-			parameter_position = search_setting_and_parameter(config_file_string[file_index], Keys[i]);
+			parameter_position = search_setting_and_parameter(config_file_string[file_index], Keys[i], 1);
 		}
 		if (parameter_position < 0)
 			continue;
