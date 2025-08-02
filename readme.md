@@ -139,7 +139,3 @@ You may review and manually reintroduce those commands into the `autoexec.cfg` i
 - Only editable settings exposed in the game’s UI or commonly used by the community are extracted (excluding video settings).
 - If key bindings are missing from the generated file, it may be due to them not being saved in `cs2_user_keys_0_slot0.vcfg`; manual inclusion will be required in such cases.
 - The generated `autoexec.cfg` file can be freely edited after creation.
-
-## License
-
-This project is licensed under the MIT License.
