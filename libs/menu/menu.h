@@ -13,6 +13,7 @@ enum
 };
 
 void print_menu(int menu_index);
+void change_default_directory(const char* directory);
 
 int main_menu();
 int create_autoexec_menu();

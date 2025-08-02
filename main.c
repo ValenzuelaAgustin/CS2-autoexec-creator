@@ -1,8 +1,17 @@
 #include "libs\menu\menu.h"
 #include <stdio.h>
 
-int main()
+int main(int argc, char* argv[])
 {
+	int i;
+	for(i = 0; argv[0][i]; i++);
+	for(; i > -1 && argv[0][i] != '\\' && argv[0][i] != '/'; i--);
+	if(i >= 0)
+	{
+		argv[0][i] = '\0';
+	}
+	change_default_directory(argv[0]);
+
 	int current_menu = -1;
 	int next_menu = main_m;
 

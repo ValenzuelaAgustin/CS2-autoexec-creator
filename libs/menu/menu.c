@@ -110,6 +110,13 @@ static char* config_file_string[5];
 static char output_file_name[30];
 static char output_file_directory[255];
 static char input_file_directory[255];
+static const char* default_directory = NULL;
+static int using_default_directory[2];
+enum
+{
+	INPUT_DIR,
+	OUTPUT_DIR
+};
 
 static void clear_stdin();
 static int selected_option();
@@ -201,10 +208,19 @@ static int load_input_files()
 {
 	long i;
 
+	using_default_directory[INPUT_DIR] = 0;
 	if(!SetCurrentDirectory(input_file_directory))
 	{
-		printf("\nBefore creating an autoexec file, you must first specify a valid input directory.");
-		return 0;
+		if(input_file_directory[0])
+			printf("\nThe program was unable to set the input directory to: %s", input_file_directory);
+		if((!default_directory || !SetCurrentDirectory(default_directory)))
+		{
+			if(default_directory && default_directory[0])
+				printf("\nThe program was unable to set the input directory to: %s", default_directory);
+			printf("\nBefore creating an autoexec file, you must first specify a valid input directory.");
+			return 0;
+		}
+		using_default_directory[INPUT_DIR] = 1;
 	}
 
 	for(i = 0; i < 4; i++)
@@ -235,10 +251,19 @@ static int create_autoexec_file(FILE** autoexec)
 {
 	int default_name = 0;
 
+	using_default_directory[OUTPUT_DIR] = 0;
 	if(!SetCurrentDirectory(output_file_directory))
 	{
-		printf("\nBefore creating an autoexec file, you must first specify a valid output directory.");
-		return 0;
+		if(output_file_directory[0])
+			printf("\nThe program was unable to set the output directory to: %s", output_file_directory);
+		if((!default_directory || !SetCurrentDirectory(default_directory)))
+		{
+			if(default_directory && default_directory[0])
+				printf("\nThe program was unable to set the output directory to: %s", default_directory);
+			printf("\nBefore creating an autoexec file, you must first specify a valid output directory.");
+			return 0;
+		}
+		using_default_directory[OUTPUT_DIR] = 1;
 	}
 	*autoexec = fopen(output_file_name, "wb");
 
@@ -257,7 +282,7 @@ static int create_autoexec_file(FILE** autoexec)
 		return 0;
 	}
 
-	printf("\nAutoexec file \"%s\" created in:\n\t%s", (default_name) ? default_output_file_name : output_file_name, output_file_directory);
+	printf("\nAutoexec file \"%s\" created in:\n\t%s", (default_name) ? default_output_file_name : output_file_name, (using_default_directory[OUTPUT_DIR]) ? default_directory : output_file_directory);
 	return 1;
 }
 
@@ -274,6 +299,11 @@ void print_menu(int menu_index)
 	}
 	printf("\n%s", menu[menu_index].message);
 	fflush(stdout);
+}
+
+void change_default_directory(const char* directory)
+{
+	default_directory = directory;
 }
 
 int main_menu()
