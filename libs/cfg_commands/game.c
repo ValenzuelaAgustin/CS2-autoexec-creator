@@ -59,11 +59,13 @@ const char* const Game_Settings[] =
 	"cl_radar_always_centered",
 	"cl_radar_rotate",
 	"cl_hud_radar_map_additive",
+	"cl_hud_radar_blur_background",
 	"cl_hud_radar_background_alpha",
 	"cl_hud_radar_scale",
 	"cl_radar_scale",
 	"cl_radar_scale_alternate",
 	"cl_radar_square_with_scoreboard",
+	"cl_radar_square_always",
 	"cl_radar_scale_dynamic",
 
 	// Crosshair
@@ -172,13 +174,15 @@ const char* const Game_Settings_Names[] =
 
 	// Radar / Tablet
 	"Radar Centers The Player",
-	"Radar IS Rotating",
+	"Radar Is Rotating",
 	"Radar Hud Map Blends With Background",
+	"Blur Background",
 	"Radar Hud Background Opacity",
 	"Radar Hud Size",
 	"Radar Map Zoom",
 	"Radar Map Alternate Zoom",
-	"Toggle Shape With Scoreboard",
+	"Toggle Square Shape With Scoreboard",
+	"Force Square Shape",
 	"Radar Is Zooming Dynamically",
 
 	// Crosshair

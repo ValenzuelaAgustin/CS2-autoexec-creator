@@ -65,11 +65,13 @@ enum
 	Radar_Centers_The_Player,
 	Radar_Is_Rotating,
 	Radar_Hud_Map_Blends_With_Background,
+	Blur_Background,
 	Radar_Hud_Background_Opacity,
 	Radar_Hud_Size,
 	Radar_Map_Zoom,
 	Radar_Map_Alternate_Zoom,
-	Toggle_Shape_With_Scoreboard,
+	Toggle_Square_Shape_With_Scoreboard,
+	Force_Square_Shape,
 	Radar_Is_Zooming_Dynamically,
 
 	// Crosshair
