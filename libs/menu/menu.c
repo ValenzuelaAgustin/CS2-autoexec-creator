@@ -13,10 +13,9 @@ typedef struct
 	int options_ammount;
 } menu_t;
 
-//static const char error_message_1[] = "ERROR: Could not find .vcfg file";
 static const char defuault_message[] = "Enter the number corresponding to the desired option:\t";
-static const char default_select_file_name_message[] = "Enter the desired file name or \'r\' to return to the main menu:\t";
-static const char default_change_directory_message[] = "Enter the desired directory or \'r\' to return to the main menu:\t";
+static const char default_select_file_name_message[] = "Enter the desired file name or just press ENTER to return to the main menu:\t";
+static const char default_change_directory_message[] = "Enter the desired directory or just press ENTER to return to the main menu:\t";
 
 static const char* const menu_name[] =
 {
@@ -37,23 +36,12 @@ static const char* const main_menu_options[] =
 	menu_name[add_additional_input_file],
 	"Quit program"
 };
-static const int main_menu_options_ammount = sizeof(main_menu_options) / sizeof(main_menu_options[0]);
 
 static const char* const create_autoexec_menu_options[] =
 {
 	menu_name[main_m],
 	"Start"
 };
-static const int create_autoexec_menu_options_ammount = sizeof(create_autoexec_menu_options) / sizeof(create_autoexec_menu_options[0]);
-
-static const char** const change_output_file_name_menu_options = NULL;
-static const int change_output_file_name_menu_options_ammount = 0;
-static const char** const change_input_directory_menu_options = NULL;
-static const int change_input_directory_menu_options_ammount = 0;
-static const char** const change_output_directory_menu_options = NULL;
-static const int change_output_directory_menu_options_ammount = 0;
-static const char** const add_additional_input_file_menu_options = NULL;
-static const int add_additional_input_file_menu_options_ammount = 0;
 
 static const menu_t menu[] =
 {
@@ -61,37 +49,37 @@ static const menu_t menu[] =
 		menu_name[main_m],
 		defuault_message,
 		main_menu_options,
-		main_menu_options_ammount
+		sizeof(main_menu_options) / sizeof(main_menu_options[0])
 	},
 	{
 		menu_name[create_autoexec],
 		defuault_message,
 		create_autoexec_menu_options,
-		create_autoexec_menu_options_ammount
+		sizeof(create_autoexec_menu_options) / sizeof(create_autoexec_menu_options[0])
 	},
 	{
 		menu_name[change_output_file_name],
 		default_select_file_name_message,
-		change_output_file_name_menu_options,
-		change_output_file_name_menu_options_ammount
+		NULL,
+		0
 	},
 	{
 		menu_name[change_input_directory],
 		default_change_directory_message,
-		change_input_directory_menu_options,
-		change_input_directory_menu_options_ammount
+		NULL,
+		0
 	},
 	{
 		menu_name[change_output_directory],
 		default_change_directory_message,
-		change_output_directory_menu_options,
-		change_output_directory_menu_options_ammount
+		NULL,
+		0
 	},
 	{
 		menu_name[add_additional_input_file],
 		default_select_file_name_message,
-		add_additional_input_file_menu_options,
-		add_additional_input_file_menu_options_ammount
+		NULL,
+		0
 	}
 };
 
@@ -143,27 +131,20 @@ static int selected_option()
 
 static int standard_change_name_menu(char* const string, const int string_length, const int menu_index)
 {
-	char buffer[3];
+	int i = getchar();
 
-	if(fgets(buffer, sizeof(buffer), stdin) == NULL)
+	if(i == '\n')
+	{
+		return main_m;
+	}
+
+	if(fgets(string + 1, string_length - 1, stdin) == NULL)
 	{
 		printf("\nThere was an error while trying to read the stdin\n");
 		return main_m;
 	}
-	if(TO_UPPER(buffer[0]) == 'R' && buffer[1] == '\n')
-	{
-		return main_m;
-	}
+	string[0] = i;
 
-	if(fgets(string + 2, string_length - 2, stdin) == NULL)
-	{
-		printf("\nThere was an error while trying to read the stdin\n");
-		return main_m;
-	}
-	string[0] = buffer[0];
-	string[1] = buffer[1];
-
-	int i;
 	for(i = 0; string[i] && string[i] != '\n'; i++);
 
 	if(string[i] == '\0')
