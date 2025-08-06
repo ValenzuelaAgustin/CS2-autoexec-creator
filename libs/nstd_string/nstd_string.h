@@ -20,6 +20,8 @@ enum
 
 long strlength(const char* string);
 
+int string_compare(const char* s0, const char* s1);
+
 char* copy_file_to_string(const char* file_name);
 
 long search_for_target_string(const char* target_string, const char* string);

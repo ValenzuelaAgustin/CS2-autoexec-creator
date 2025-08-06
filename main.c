@@ -30,6 +30,12 @@ int main(int argc, char* argv[])
 		case create_autoexec:
 			next_menu = create_autoexec_menu();
 			break;
+		case set_enter_missing_commands_values:
+			next_menu = set_enter_missing_commands_values_menu();
+			break;
+		case set_use_only_additional_input_file:
+			next_menu = set_use_only_additional_input_file_menu();
+			break;
 		case change_output_file_name:
 			next_menu = change_output_file_name_menu();
 			break;

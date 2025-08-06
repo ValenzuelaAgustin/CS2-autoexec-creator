@@ -11,6 +11,15 @@ long strlength(const char* string)
 	return i;
 }
 
+int string_compare(const char* s0, const char* s1)
+{
+	if(!s0 || !s1)
+		return 0;
+	int i;
+	for(i = 0; s0[i] && s1[i] && s0[i] == s1[i]; i++);
+	return s0[i] == s1[i];
+}
+
 char* copy_file_to_string(const char* file_name)
 {
 	if (file_name == NULL)

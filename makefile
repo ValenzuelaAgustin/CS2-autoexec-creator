@@ -39,7 +39,7 @@ ${OTHER_SETTINGS_OBJ}: libs\cfg_commands\other_settings.c libs\cfg_commands\othe
 ${CFG_COMMANDS_OBJ}: libs\cfg_commands\cfg_commands.c libs\cfg_commands\cfg_commands.h libs\cfg_commands\audio.h libs\cfg_commands\game.h libs\cfg_commands\keyboard_and_mouse.h libs\cfg_commands\other_settings.h
 	${CC} ${CFLAGS} -c libs\cfg_commands\cfg_commands.c -o ${CFG_COMMANDS_OBJ}
 
-${MENU_OBJ}: libs\menu\menu.c libs\menu\menu.h libs\nstd_string\nstd_string.h libs\autoexec_creator\autoexec_creator.h
+${MENU_OBJ}: libs\menu\menu.c libs\menu\menu.h libs\cfg_commands\keyboard_and_mouse.h libs\nstd_string\nstd_string.h libs\autoexec_creator\autoexec_creator.h
 	${CC} ${CFLAGS} -c libs\menu\menu.c -o ${MENU_OBJ}
 
 clean:

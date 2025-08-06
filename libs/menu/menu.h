@@ -5,6 +5,8 @@ enum
 {
 	main_m,
 	create_autoexec,
+	set_enter_missing_commands_values,
+	set_use_only_additional_input_file,
 	change_output_file_name,
 	change_input_directory,
 	change_output_directory,
@@ -17,6 +19,8 @@ void change_default_directory(const char* directory);
 
 int main_menu();
 int create_autoexec_menu();
+int set_enter_missing_commands_values_menu();
+int set_use_only_additional_input_file_menu();
 int change_output_file_name_menu();
 int change_input_directory_menu();
 int change_output_directory_menu();
