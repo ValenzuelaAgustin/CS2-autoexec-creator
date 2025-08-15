@@ -118,7 +118,7 @@ static const char* const file_name[] =
 	additional_file_name
 };
 static int using_default_output_file_name;
-static int enter_missing_commands_values = 1;
+static int enter_missing_commands_values = 0;
 static int use_only_additional_input_file = 0;
 static char* config_file_string[5];
 static char output_file_name[32];
