@@ -43,4 +43,4 @@ ${MENU_OBJ}: libs\menu\menu.c libs\menu\menu.h libs\cfg_commands\keyboard_and_mo
 	${CC} ${CFLAGS} -c libs\menu\menu.c -o ${MENU_OBJ}
 
 clean:
-	rm ${OBJDIR}\*.o
+	del ${OBJDIR}\*.o

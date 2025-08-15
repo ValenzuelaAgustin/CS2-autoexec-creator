@@ -62,9 +62,9 @@ long search_for_target_string(const char* target_string, const char* string)
 
 	long i, j, start;
 
-	for (i = 0, j = 0, start = 0; string[i] && target_string[j]; i = start + 1)
+	for (i = 0, j = 0, start = -1; string[i] && target_string[j];)
 	{
-		for (; string[i] && string[i] != target_string[0]; i++);
+		for (i = start + 1; string[i] && string[i] != target_string[0]; i++);
 		if (string[i] == '\0')
 			break;
 		start = i;
