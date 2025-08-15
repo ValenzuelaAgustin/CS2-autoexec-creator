@@ -1,6 +1,7 @@
 #include "autoexec_creator.h"
 #include "..\nstd_string\nstd_string.h"
 #include "..\cfg_commands\cfg_commands.h"
+#include "..\cfg_commands\keyboard_and_mouse.h"
 
 enum
 {

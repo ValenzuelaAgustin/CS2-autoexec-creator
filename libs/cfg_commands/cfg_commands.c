@@ -1,4 +1,8 @@
 #include "cfg_commands.h"
+#include "audio.h"
+#include "game.h"
+#include "keyboard_and_mouse.h"
+#include "other_settings.h"
 
 const cfg_menu_t cfg_menu[] =
 {
