@@ -23,6 +23,7 @@ enum
 	Community_Notification_Horizontal_Offset,
 	Community_Notification_Vertical_Offset,
 	Glow_Weapon_with_Rarity_Color,
+	Override_Spectating_HUD_Color,
 
 	// Team
 	Show_Team_ID_Through_Walls,
@@ -49,8 +50,6 @@ enum
 	Smooth_Spectator_Camera_Speed,
 
 	// Item
-	Delay_Sniper_Rifle_UnScope_after_Shot,
-	Auto_ReZoom_Sniper_Rifle_after_Shot,
 	Detach_Silencer_on_M4A1S_and_USPS,
 	Viewmodel_Position,
 	Preferred_Viewmodel_Left_Right_Handedness,
@@ -94,6 +93,13 @@ enum
 	Use_crosshair_color_for_scope_dot,
 	Show_Player_Crosshairs,
 	Show_my_crosshair_when_spectating_bots,
+
+	// Sniper Sights
+	Delay_Sniper_Rifle_UnScope_after_Shot,
+	Show_Scoped_Sniper_Rifle_Inaccuracy,
+	Auto_ReZoom_Sniper_Rifle_after_Shot,
+	Sniper_crosshair_thickness,
+	Scope_dot_scale,
 
 	// Grenade Line-up Reticle
 	Keep_Regular_Crosshair,

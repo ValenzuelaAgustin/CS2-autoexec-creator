@@ -17,6 +17,7 @@ const char* const Game_Settings[] =
 	"ui_steam_overlay_notification_position_horz",
 	"ui_steam_overlay_notification_position_vert",
 	"cl_weapon_selection_rarity_color",
+	"cl_force_spec_hud_color_to_team",
 
 	// Team
 	"cl_teamid_overhead_mode",
@@ -43,8 +44,6 @@ const char* const Game_Settings[] =
 	"cl_obs_interp_pos_rate",
 
 	// Item
-	"cl_sniper_delay_unscope",
-	"cl_sniper_auto_rezoom",
 	"cl_silencer_mode",
 	"viewmodel_presetpos",
 	"cl_prefer_lefthanded",
@@ -88,6 +87,13 @@ const char* const Game_Settings[] =
 	"cl_ironsight_usecrosshaircolor",
 	"cl_show_observer_crosshair",
 	"cl_observed_bot_crosshair",
+
+	// Sniper Sights
+	"cl_sniper_delay_unscope",
+	"cl_sniper_show_inaccuracy",
+	"cl_sniper_auto_rezoom",
+	"cl_crosshair_sniper_width",
+	"cl_ironsight_dot_scale",
 
 	// Grenade Line-up Reticle
 	"cl_grenadecrosshair_keepusercrosshair",
@@ -134,6 +140,7 @@ const char* const Game_Settings_Names[] =
 	"Community Notification Horizontal Offset",
 	"Community Notification Vertical Offset",
 	"Glow Weapon with Rarity Color",
+	"Override Spectating HUD Color",
 
 	// Team
 	"Show Team ID Through Walls",
@@ -160,8 +167,6 @@ const char* const Game_Settings_Names[] =
 	"Smooth Spectator Camera Speed",
 
 	// Item
-	"Delay Sniper Rifle Un-Scope after Shot",
-	"Auto Re-Zoom Sniper Rifle after Shot",
 	"Detach Silencer on M4A1-S and USPS",
 	"Viewmodel Position",
 	"Preferred Viewmodel Left/Right Handedness",
@@ -206,6 +211,13 @@ const char* const Game_Settings_Names[] =
 	"Show Player Crosshairs",
 	"Show my crosshair when spectating bots",
 
+	// Sniper Sights
+	"Delay Sniper Rifle Un-Scope after Shot",
+	"Show Scoped Sniper Rifle Inaccuracy",
+	"Auto Re-Zoom Sniper Rifle after Shot",
+	"Sniper crosshair thickness",
+	"Scope dot scale",
+
 	// Grenade Line-up Reticle
 	"Keep Regular Crosshair",
 	"Flashbangs Crosshair",
@@ -244,6 +256,7 @@ const char* const Game_Settings_Sub_Menu_Titles[] =
 	"Item",
 	"Radar / Tablet",
 	"Crosshair",
+	"Sniper Sights",
 	"Grenade Line-up Reticle",
 	"Damage Prediction",
 	"Telemetry"
@@ -252,13 +265,14 @@ const char* const Game_Settings_Sub_Menu_Titles[] =
 const int Game_Sub_Menu_Last_Config[] =
 {
 	Install_Counter_Strike_Workshop_Tools,
-	Glow_Weapon_with_Rarity_Color,
+	Override_Spectating_HUD_Color,
 	Looking_to_Play_when_Counter_Strike_Starts,
 	Clean_Player_Names,
 	Smooth_Spectator_Camera_Speed,
 	Last_Weapon_on_Radial_Weapon_Tap,
 	Radar_Is_Zooming_Dynamically,
 	Show_my_crosshair_when_spectating_bots,
+	Scope_dot_scale,
 	Decoy_grenades_Crosshair_Delay,
 	Predict_Kill_Ragdolls,
 	Use_the_detailed_network_quality_display,
